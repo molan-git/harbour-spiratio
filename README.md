@@ -1,4 +1,4 @@
-# Spiratio <img width="60" title="Page Home" src="https://github.com/molan-git/harbour-spiratio/blob/main/icons/172x172/harbour-spiratio.png">
+
 
 A breathing exercise app for [Sailfish OS](https://sailfishos.org).
 
