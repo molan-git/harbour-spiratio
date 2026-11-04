@@ -3,7 +3,7 @@ Type=Application
 X-Nemo-Application-Type=silica-qt5
 Icon=harbour-spiratio
 Exec=harbour-spiratio
-Name=harbour-spiratio
+Name=Spiratio
 # translation example:
 # your app name in German locale (de)
 #
@@ -13,7 +13,7 @@ Name[de]=harbour-spiratio
 
 [X-Sailjail]
 # Replace with your organization as a reverse domain name
-OrganizationName=org.myorg
+OrganizationName=org.molan-git
 # ApplicationName does not have to be identical to Name
 ApplicationName=spiratio
 # Add the required permissions here
