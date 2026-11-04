@@ -55,7 +55,7 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
-                text: "New pattern…"
+                text: "Add own breath pattern"
                 onClicked: pageStack.push("PatternEditorPage.qml")
             }
         }
@@ -97,6 +97,21 @@ Page {
                              : "Runs until you stop it"
             }
 
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: "Start"
+                width: parent.width * 0.8
+                enabled: page.findPattern(page.selectedId) !== null
+                onClicked: {
+                    pageStack.push("SessionPage.qml", {
+                        pattern: page.findPattern(page.selectedId),
+                        durationMinutes: page.durationMinutes
+                    })
+                }
+            }
+
+           // Item { width: parent.width; height: Theme.paddingLarge }
+
             SectionHeader { text: "Patterns" }
 
             Repeater {
@@ -112,23 +127,19 @@ Page {
             }
 
             SectionHeader {
-                text: "Custom"
+                text: "Custom Patterns"
                 visible: page.customPatterns.length > 0
             }
 
             Repeater {
                 model: page.customPatterns.length
                 visible: page.customPatterns.length > 0
-                Item {
+                ListItem {
+                    id: customItem
                     width: column.width
-                    height: Theme.itemSizeMedium
-                    BackgroundItem {
-                        id: customItem
-                        anchors.fill: parent
-                        onClicked: page.selectPattern(page.customPatterns[index].id)
-                        onPressAndHold: contextMenu.show(customItem)
+                    contentHeight: Theme.itemSizeMedium
+                    menu: Component {
                         ContextMenu {
-                            id: contextMenu
                             MenuItem {
                                 text: "Edit"
                                 onClicked: pageStack.push("PatternEditorPage.qml",
@@ -144,62 +155,21 @@ Page {
                                 }
                             }
                         }
-                        Column {
-                            x: Theme.horizontalPageMargin
-                            width: parent.width - 2 * Theme.horizontalPageMargin
-                            anchors.verticalCenter: parent.verticalCenter
-                            spacing: Theme.paddingSmall / 2
-                            Row {
-                                width: parent.width
-                                spacing: Theme.paddingSmall
-                                Label {
-                                    text: page.customPatterns[index].name
-                                    color: (page.selectedId === page.customPatterns[index].id
-                                            || customItem.highlighted) ? Theme.highlightColor
-                                                                       : Theme.primaryColor
-                                }
-                                Label {
-                                    text: "(" + page.customPatterns[index].tag + ")"
-                                    color: Theme.secondaryColor
-                                    font.pixelSize: Theme.fontSizeSmall
-                                }
-                            }
-                            Label {
-                                text: page.customPatterns[index].benefit
-                                color: Theme.secondaryColor
-                                font.pixelSize: Theme.fontSizeExtraSmall
-                            }
-                        }
-                        Label {
-                            text: "✓"
-                            visible: page.selectedId === page.customPatterns[index].id
-                            color: Theme.highlightColor
-                            anchors.right: parent.right
-                            anchors.rightMargin: Theme.horizontalPageMargin
-                            anchors.verticalCenter: parent.verticalCenter
-                        }
+                    }
+                    TextSwitch {
+                        width: parent.width
+                        automaticCheck: false
+                        checked: page.selectedId === page.customPatterns[index].id
+                        text: page.customPatterns[index].name + " (" + page.customPatterns[index].tag + ")"
+                        description: page.customPatterns[index].benefit
+                        onClicked: page.selectPattern(page.customPatterns[index].id)
+                        onPressAndHold: customItem.showMenu()
                     }
                 }
             }
 
             Item { width: parent.width; height: Theme.paddingLarge }
-
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: page.durationMinutes > 0
-                      ? "Start - " + page.durationLabels[page.durations.indexOf(page.durationMinutes)]
-                      : "Start - endless"
-                width: parent.width * 0.8
-                enabled: page.findPattern(page.selectedId) !== null
-                onClicked: {
-                    pageStack.push("SessionPage.qml", {
-                        pattern: page.findPattern(page.selectedId),
-                        durationMinutes: page.durationMinutes
-                    })
-                }
-            }
-
-            Item { width: parent.width; height: Theme.paddingLarge }
         }
+        VerticalScrollDecorator {}
     }
 }

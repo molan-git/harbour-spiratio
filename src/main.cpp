@@ -3,6 +3,7 @@
 #include <QQuickView>
 #include <QQmlContext>
 #include <QScopedPointer>
+#include <QSoundEffect>
 #include "settings.h"
 
 int main(int argc, char *argv[])
@@ -13,8 +14,11 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
     view->rootContext()->setContextProperty("Settings", new Settings(app.data()));
-    // Path to the shipped gong sound (outside the qml folder), usable as Audio.source
-    view->rootContext()->setContextProperty("gongSource", SailfishApp::pathTo("sounds/gong1.ogg"));
+
+    QSoundEffect *gong = new QSoundEffect(app.data());
+    gong->setSource(SailfishApp::pathTo("sounds/gong1.wav"));
+    view->rootContext()->setContextProperty("gong", gong);
+
     view->setSource(SailfishApp::pathTo("qml/harbour-spiratio.qml"));
     view->show();
 

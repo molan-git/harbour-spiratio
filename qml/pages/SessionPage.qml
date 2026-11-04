@@ -1,5 +1,4 @@
 import QtQuick 2.0
-import QtMultimedia 5.0
 import Sailfish.Silica 1.0
 import "../components"
 
@@ -10,7 +9,7 @@ Page {
     property int durationMinutes: 10
 
     property var phases: pattern ? pattern.phases : []
-    property var phaseStart: []     // cumulative start time of each phase
+    property var phaseStart: []
     property real cycleTime: 1
     property int phaseIndex: 0
     property real phaseElapsed: 0
@@ -18,7 +17,6 @@ Page {
     property real timeInCycle: 0
     property bool running: false
     property bool finished: false
-    // Lets the cover page recognize this page as the active breathing session
     readonly property bool isSession: true
 
     onStatusChanged: {
@@ -91,14 +89,8 @@ Page {
         console.log("Spiratio cue:", type)
         if (!soundOn())
             return
-        gong.stop()   // restart from the beginning for rapid cue changes
+        gong.stop()
         gong.play()
-    }
-
-    Audio {
-        id: gong
-        // registered in main.cpp, resolves to /usr/share/harbour-spiratio/sounds/gong1.ogg
-        source: gongSource
     }
 
     function phaseLabel(type) {
@@ -133,7 +125,7 @@ Page {
 
             PageHeader {
                 title: pattern ? pattern.name : "Spiratio"
-                description: pattern ? "(" + pattern.tag + ") · " + pattern.benefit : ""
+                description: pattern ? "(" + pattern.tag + ") - " + pattern.benefit : ""
             }
 
             BreathGraph {
@@ -157,7 +149,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: page.bigCount
                 font.pixelSize: Theme.fontSizeExtraLarge
-                color: Theme.primaryColor
+                color: Theme.highlightColor
                 visible: text.length > 0
             }
 
@@ -165,7 +157,7 @@ Page {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: page.timeLine
                 font.pixelSize: Theme.fontSizeMedium
-                color: Theme.secondaryColor
+                color: Theme.secondaryHighlightColor
             }
 
             Button {

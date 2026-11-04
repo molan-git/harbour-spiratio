@@ -13,6 +13,7 @@
 TARGET = harbour-spiratio
 
 CONFIG += sailfishapp
+QT += multimedia
 
 SOURCES += \
     src/main.cpp
@@ -30,7 +31,7 @@ DISTFILES += \
     rpm/harbour-spiratio.changes.in \
     rpm/harbour-spiratio.changes.run.in \
     rpm/harbour-spiratio.spec \
-    sounds/gong1.ogg \
+    sounds/gong1.wav \
     translations/*.ts \
     harbour-spiratio.desktop
 
@@ -43,7 +44,7 @@ CONFIG += sailfishapp_i18n
 # German translation is enabled as an example. If you aren't
 # planning to localize your app, remember to comment out the
 # following TRANSLATIONS line. And also do not forget to
-# modify the localized app name in the the .desktop file.
+# modify the localized app name in the .desktop file.
 TRANSLATIONS += translations/harbour-spiratio-de.ts
 
 HEADERS += \
