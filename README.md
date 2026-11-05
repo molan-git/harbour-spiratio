@@ -22,7 +22,7 @@ Download the latest release from:
 
 ## Translations
 
-[no translation files yet]
+New languages can be added via GitHub. Incomplete translations may not be accepted or included in the app.
 
 ## Audio
 
