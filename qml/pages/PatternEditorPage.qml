@@ -5,8 +5,7 @@ import "../js/patterns.js" as PatternsDB
 Page {
     id: page
 
-    property var editing: null   // custom pattern object when editing, null when creating
-
+    property var editing: null
     property string nameText: ""
     property string inText: "4"
     property string holdInText: "0"
@@ -52,8 +51,8 @@ Page {
         var hOutS = parseInt(holdOutText) || 0
         var nm = nameText.trim()
 
-        if (nm.length === 0) { attentionText = "Please give the pattern a name"; return }
-        if (inS <= 0 || outS <= 0) { attentionText = "Inhale and exhale must be at least 1 second"; return }
+        if (nm.length === 0) { attentionText = qsTr("Please give the pattern a name"); return }
+        if (inS <= 0 || outS <= 0) { attentionText = qsTr("Inhale and exhale must be at least 1 second"); return }
 
         var phases = buildPhases(inS, hInS, outS, hOutS)
 
@@ -68,7 +67,7 @@ Page {
             id: editing ? editing.id : ("custom-" + Date.now()),
             name: nm,
             tag: PatternsDB.tagFromPhases(phases),
-            benefit: "Custom",
+            benefit: qsTr("Custom"),
             phases: phases
         }
 
@@ -95,15 +94,14 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: editing ? "Edit pattern" : "New pattern"
-                description: "Breath in, hold, breath out, hold — in seconds"
+                title: editing ? qsTr("Edit pattern") : qsTr("New pattern")
             }
 
             TextField {
                 id: nameField
                 width: parent.width
-                label: "Name"
-                placeholderText: "e.g. Evening calm"
+                label: qsTr("Name")
+                placeholderText: qsTr("e.g. Evening calm")
                 text: page.nameText
                 onTextChanged: page.nameText = text
                 EnterKey.enabled: text.length > 0
@@ -117,28 +115,28 @@ Page {
 
                 TextField {
                     width: (parent.width - parent.spacing) / 2
-                    label: "Breath in (s)"
+                    label: qsTr("Breath in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: page.inText
                     onTextChanged: page.inText = text
                 }
                 TextField {
                     width: (parent.width - parent.spacing) / 2
-                    label: "Hold (s)"
+                    label: qsTr("Hold after in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: page.holdInText
                     onTextChanged: page.holdInText = text
                 }
                 TextField {
                     width: (parent.width - parent.spacing) / 2
-                    label: "Breath out (s)"
+                    label: qsTr("Breath out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: page.outText
                     onTextChanged: page.outText = text
                 }
                 TextField {
                     width: (parent.width - parent.spacing) / 2
-                    label: "Hold (s)"
+                    label: qsTr("Hold after out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: page.holdOutText
                     onTextChanged: page.holdOutText = text
@@ -148,7 +146,7 @@ Page {
             Label {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2 * Theme.horizontalPageMargin
-                text: "Set a hold to 0 to skip it. Example: in 4, hold 3, out 5, hold 3."
+                text: qsTr("Set a hold to 0 to skip it. Example: in 4, hold 3, out 5, hold 3.")
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
                 wrapMode: Text.WordWrap
@@ -156,7 +154,7 @@ Page {
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: editing ? "Save changes" : "Save pattern"
+                text: editing ? qsTr("Save changes") : qsTr("Save pattern")
                 preferredWidth: Theme.buttonWidthLarge
                 onClicked: page.save()
             }

@@ -14,12 +14,12 @@ Page {
             id: column
             width: parent.width
 
-            PageHeader { title: "Settings" }
+            PageHeader { title: qsTr("Settings") }
 
             TextSwitch {
                 width: parent.width
-                text: "Gong sound"
-                description: "Play a gong when the session starts and whenever the breathing direction changes"
+                text: qsTr("Gong sound")
+                description: qsTr("Play a gong when the session starts and whenever the breathing direction changes")
                 checked: page.soundEnabled
                 automaticCheck: true
                 onCheckedChanged: {

@@ -21,6 +21,7 @@ SOURCES += \
 DISTFILES += \
     qml/cover/CoverPage.qml \
     qml/harbour-spiratio.qml \
+    qml/js/translations.js \
     qml/pages/AboutPage.qml \
     qml/pages/MainPage.qml \
     qml/pages/PatternEditorPage.qml \

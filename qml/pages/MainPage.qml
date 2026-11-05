@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../js/patterns.js" as PatternsDB
+import "../js/translations.js" as Tr
 
 Page {
     id: page
@@ -10,7 +11,7 @@ Page {
     property string selectedId: ""
     property int durationMinutes: 10
     property var durations: [3, 5, 10, 15, 20, 30, 0]
-    property var durationLabels: ["3 min", "5 min", "10 min", "15 min", "20 min", "30 min", "Endless"]
+    property var durationLabels: [qsTr("3 min"), qsTr("5 min"), qsTr("10 min"), qsTr("15 min"), qsTr("20 min"), qsTr("30 min"), qsTr("Endless")]
 
     onStatusChanged: {
         if (status === PageStatus.Active)
@@ -47,15 +48,15 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: "About"
+                text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("AboutPage.qml"))
             }
             MenuItem {
-                text: "Settings"
+                text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
-                text: "Add own breath pattern"
+                text: qsTr("Add custom breathing pattern")
                 onClicked: pageStack.push("PatternEditorPage.qml")
             }
         }
@@ -65,14 +66,14 @@ Page {
             width: parent.width
             spacing: 0
 
-            PageHeader { title: "Spiratio" }
+            PageHeader { title: qsTr("Spiratio") }
 
-            SectionHeader { text: "Duration" }
+            SectionHeader { text: qsTr("Duration") }
 
             ComboBox {
                 id: durationCombo
                 width: parent.width
-                label: "Session length"
+                label: qsTr("Session length")
                 currentIndex: -1
                 menu: ContextMenu {
                     Repeater {
@@ -93,13 +94,13 @@ Page {
                     page.durationMinutes = page.durations[currentIndex]
                 }
                 description: page.durationMinutes > 0
-                             ? "Session ends automatically after " + page.durationMinutes + " minutes"
-                             : "Runs until you stop it"
+                             ? qsTr("Session ends automatically after %1 minutes", page.durationMinutes)
+                             : qsTr("Runs until you stop it")
             }
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: "Start"
+                text: qsTr("Start")
                 width: parent.width * 0.8
                 enabled: page.findPattern(page.selectedId) !== null
                 onClicked: {
@@ -110,9 +111,7 @@ Page {
                 }
             }
 
-           // Item { width: parent.width; height: Theme.paddingLarge }
-
-            SectionHeader { text: "Patterns" }
+            SectionHeader { text: qsTr("Breathing patterns") }
 
             Repeater {
                 model: PatternsDB.patterns.length
@@ -120,14 +119,14 @@ Page {
                     width: column.width
                     automaticCheck: false
                     checked: page.selectedId === PatternsDB.patterns[index].id
-                    text: PatternsDB.patterns[index].name + " (" + PatternsDB.patterns[index].tag + ")"
-                    description: PatternsDB.patterns[index].benefit
+                    text: Tr.trName(PatternsDB.patterns[index].id) + " (" + PatternsDB.patterns[index].tag + ")"
+                    description: Tr.trBenefit(PatternsDB.patterns[index].id)
                     onClicked: page.selectPattern(PatternsDB.patterns[index].id)
                 }
             }
 
             SectionHeader {
-                text: "Custom Patterns"
+                text: qsTr("Custom breathing patterns")
                 visible: page.customPatterns.length > 0
             }
 
@@ -141,12 +140,12 @@ Page {
                     menu: Component {
                         ContextMenu {
                             MenuItem {
-                                text: "Edit"
+                                text: qsTr("Edit")
                                 onClicked: pageStack.push("PatternEditorPage.qml",
                                                           { editing: page.customPatterns[index] })
                             }
                             MenuItem {
-                                text: "Delete"
+                                text: qsTr("Delete")
                                 onClicked: {
                                     var list = page.customPatterns
                                     list.splice(index, 1)

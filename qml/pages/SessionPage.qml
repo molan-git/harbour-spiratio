@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import QtQuick.Window 2.0
+import "../js/translations.js" as Tr
 import "../components"
 
 Page {
@@ -94,9 +96,9 @@ Page {
     }
 
     function phaseLabel(type) {
-        if (type === "in")  return "Breathe in"
-        if (type === "out") return "Breathe out"
-        return "Hold"
+        if (type === "in")  return qsTr("Breathe in")
+        if (type === "out") return qsTr("Breathe out")
+        return qsTr("Hold")
     }
 
     function fmtTime(totalSeconds) {
@@ -106,12 +108,12 @@ Page {
         return (m < 10 ? "0" + m : m) + ":" + (r < 10 ? "0" + r : r)
     }
 
-    property string bigLabel: finished ? "Session complete"
+    property string bigLabel: finished ? qsTr("Session complete")
                                        : (running ? phaseLabel(phases.length ? phases[phaseIndex].t : "hold")
-                                                  : "Paused")
+                                                  : qsTr("Paused"))
     property string bigCount: finished ? "" : (running ? "" + Math.ceil(phases.length ? phases[phaseIndex].s - phaseElapsed : 0) : "")
     property string timeLine: durationMinutes > 0
-                              ? (finished ? "" : fmtTime(durationMinutes * 60 - sessionElapsed) + " left")
+                              ? (finished ? "" : qsTr("%1 left").arg(fmtTime(durationMinutes * 60 - sessionElapsed)))
                               : fmtTime(sessionElapsed)
 
     SilicaFlickable {
@@ -124,15 +126,15 @@ Page {
             spacing: Theme.paddingMedium
 
             PageHeader {
-                title: pattern ? pattern.name : "Spiratio"
-                description: pattern ? "(" + pattern.tag + ") - " + pattern.benefit : ""
+                title: pattern ? Tr.trName(pattern.id) : qsTr("Spiratio")
+                description: pattern ? "(" + pattern.tag + ") – " + Tr.trBenefit(pattern.id) : ""
             }
 
             BreathGraph {
                 id: graph
-                width: parent.width - 2 * Theme.horizontalPageMargin
+                width: Math.min(parent.width - 2 * Theme.horizontalPageMargin, Screen.height * 0.5)
                 height: width
-                x: Theme.horizontalPageMargin
+                x: (parent.width - width) / 2
                 phases: page.phases
                 cycleTime: page.cycleTime
                 timeInCycle: page.timeInCycle
@@ -148,7 +150,7 @@ Page {
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: page.bigCount
-                font.pixelSize: Theme.fontSizeExtraLarge
+                font.pixelSize: Theme.fontSizeHuge
                 color: Theme.highlightColor
                 visible: text.length > 0
             }
@@ -163,8 +165,8 @@ Page {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width * 0.8
-                text: page.finished ? "Done"
-                                    : (page.running ? "Pause" : (page.sessionElapsed > 0 ? "Resume" : "Start"))
+                text: page.finished ? qsTr("Done")
+                                    : (page.running ? qsTr("Pause") : (page.sessionElapsed > 0 ? qsTr("Resume") : qsTr("Start")))
                 onClicked: {
                     if (page.finished) {
                         pageStack.pop()
@@ -180,7 +182,7 @@ Page {
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: parent.width * 0.8
-                text: "Stop session"
+                text: qsTr("Stop session")
                 visible: page.sessionElapsed > 0 && !page.finished
                 onClicked: pageStack.pop()
             }
