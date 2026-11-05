@@ -33,6 +33,8 @@ DISTFILES += \
     rpm/harbour-spiratio.changes.run.in \
     rpm/harbour-spiratio.spec \
     sounds/gong1.wav \
+    sounds/bell1.wav \
+    sounds/bell2.wav \
     translations/*.ts \
     harbour-spiratio.desktop
 
@@ -49,7 +51,8 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-spiratio-de.ts
 
 HEADERS += \
-    src/settings.h
+    src/settings.h \
+    src/soundplayer.h
 
 # Ship the sounds folder as /usr/share/harbour-spiratio/sounds
 sounds.files = sounds

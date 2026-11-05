@@ -240,11 +240,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gong sound</source>
+        <source>Sounds</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Play a gong when the session starts and whenever the breathing direction changes</source>
+        <source>Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play a sound when the breathing direction changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Breath in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Breath out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hold</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Volume</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

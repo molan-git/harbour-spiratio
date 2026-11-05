@@ -88,11 +88,20 @@ Page {
     }
 
     function playCue(type) {
-        console.log("Spiratio cue:", type)
         if (!soundOn())
             return
-        gong.stop()
-        gong.play()
+        var vol = Settings.value("volume", "80") / 100
+        var s
+
+        if (type === "in")
+            s = Settings.value("soundIn", "bell1")
+        else if (type === "out")
+            s = Settings.value("soundOut", "bell2")
+        else
+            s = Settings.value("soundHold", "gong1")
+
+        soundPlayer.volume = vol
+        soundPlayer.play(s)
     }
 
     function phaseLabel(type) {
