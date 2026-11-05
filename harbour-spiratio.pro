@@ -51,8 +51,7 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-spiratio-de.ts
 
 HEADERS += \
-    src/settings.h \
-    src/soundplayer.h
+    src/settings.h
 
 # Ship the sounds folder as /usr/share/harbour-spiratio/sounds
 sounds.files = sounds

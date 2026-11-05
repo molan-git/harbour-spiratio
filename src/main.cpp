@@ -4,7 +4,6 @@
 #include <QQmlContext>
 #include <QScopedPointer>
 #include "settings.h"
-#include "soundplayer.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,7 +13,6 @@ int main(int argc, char *argv[])
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
     view->rootContext()->setContextProperty("Settings", new Settings(app.data()));
-    view->rootContext()->setContextProperty("soundPlayer", new SoundPlayer(app.data()));
 
     view->setSource(SailfishApp::pathTo("qml/harbour-spiratio.qml"));
     view->show();

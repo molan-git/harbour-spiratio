@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtQuick.Window 2.0
+import QtMultimedia 5.0
 import "../js/translations.js" as Tr
 import "../components"
 
@@ -100,8 +101,9 @@ Page {
         else
             s = Settings.value("soundHold", "gong1")
 
-        soundPlayer.volume = vol
-        soundPlayer.play(s)
+        if (s === "bell1") { bell1.volume = vol; bell1.play() }
+        else if (s === "bell2") { bell2.volume = vol; bell2.play() }
+        else { gong1.volume = vol; gong1.play() }
     }
 
     function phaseLabel(type) {
@@ -124,6 +126,19 @@ Page {
     property string timeLine: durationMinutes > 0
                               ? (finished ? "" : qsTr("%1 left").arg(fmtTime(durationMinutes * 60 - sessionElapsed)))
                               : fmtTime(sessionElapsed)
+
+    SoundEffect {
+        id: bell1
+        source: "/usr/share/harbour-spiratio/sounds/bell1.wav"
+    }
+    SoundEffect {
+        id: bell2
+        source: "/usr/share/harbour-spiratio/sounds/bell2.wav"
+    }
+    SoundEffect {
+        id: gong1
+        source: "/usr/share/harbour-spiratio/sounds/gong1.wav"
+    }
 
     SilicaFlickable {
         anchors.fill: parent
