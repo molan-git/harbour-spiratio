@@ -1,10 +1,10 @@
 # Spiratio <img width="60" title="Page Home" src="https://github.com/molan-git/harbour-spiratio/blob/main/icons/172x172/harbour-spiratio.png">
 
-A breathing exercise app for [Sailfish OS](https://sailfishos.org).
+A breathing companion app for [Sailfish OS](https://sailfishos.org) which includes well-proven techniques, from quick stress relief to deep relaxation, with a live breath graph and optional audio cues.
 
 ## About
 
-Spiratio guides you through structured breathing sessions with a real-time visual animation and audio cues. Choose from predefined patterns or create your own, pick a session length, and breathe.
+Spiratio guides you through structured breathing sessions with a real-time visual animation and audio cues. Includes various predefined breathing patterns and offers the possibility to add custom ones create your own.
 
 ## Features
 
@@ -22,7 +22,7 @@ Download the latest release from:
 
 ## Translations
 
-[no translation files yet]
+New languages can be added via GitHub. Incomplete translations may not be accepted or included in the app.
 
 ## Audio
 
