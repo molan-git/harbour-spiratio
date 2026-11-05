@@ -4,7 +4,7 @@ A breathing companion app for [Sailfish OS](https://sailfishos.org) which includ
 
 ## About
 
-Spiratio guides you through structured breathing sessions with a real-time visual animation and audio cues. Choose from predefined patterns or create your own, pick a session length, and breathe.
+Spiratio guides you through structured breathing sessions with a real-time visual animation and audio cues. Includes various predefined breathing patterns and offers the possibility to add custom ones create your own.
 
 ## Features
 
