@@ -1,6 +1,6 @@
 # Spiratio <img width="60" title="Page Home" src="https://github.com/molan-git/harbour-spiratio/blob/main/icons/172x172/harbour-spiratio.png">
 
-A breathing exercise app for [Sailfish OS](https://sailfishos.org).
+A breathing companion app for [Sailfish OS](https://sailfishos.org) which includes well-proven techniques, from quick stress relief to deep relaxation, with a live breath graph and optional audio cues.
 
 ## About
 
