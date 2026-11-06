@@ -5,7 +5,7 @@ Page {
     id: page
 
     property bool soundEnabled: Settings.value("soundEnabled", "true") === "true"
-    property real volume: Settings.value("volume", "80")
+    property real volume: Settings.value("volume", "50")
     property string soundIn: Settings.value("soundIn", "bell1")
     property string soundOut: Settings.value("soundOut", "bell2")
     property string soundHold: Settings.value("soundHold", "gong1")
@@ -45,14 +45,15 @@ Page {
                     MenuItem { text: "Bell 1" }
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
+                    MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
-                    var names = ["bell1", "bell2", "gong1"]
+                    var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundIn = names[currentIndex]
                     Settings.setValue("soundIn", page.soundIn)
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1"].indexOf(page.soundIn)
+                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundIn)
                     currentIndex = (idx >= 0) ? idx : 0
                 }
             }
@@ -66,14 +67,15 @@ Page {
                     MenuItem { text: "Bell 1" }
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
+                    MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
-                    var names = ["bell1", "bell2", "gong1"]
+                    var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundOut = names[currentIndex]
                     Settings.setValue("soundOut", page.soundOut)
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1"].indexOf(page.soundOut)
+                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundOut)
                     currentIndex = (idx >= 0) ? idx : 1
                 }
             }
@@ -87,14 +89,15 @@ Page {
                     MenuItem { text: "Bell 1" }
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
+                    MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
-                    var names = ["bell1", "bell2", "gong1"]
+                    var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundHold = names[currentIndex]
                     Settings.setValue("soundHold", page.soundHold)
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1"].indexOf(page.soundHold)
+                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundHold)
                     currentIndex = (idx >= 0) ? idx : 2
                 }
             }

@@ -33,6 +33,7 @@ DISTFILES += \
     rpm/harbour-spiratio.changes.run.in \
     rpm/harbour-spiratio.spec \
     sounds/gong1.wav \
+    sounds/gong2.wav \
     sounds/bell1.wav \
     sounds/bell2.wav \
     translations/*.ts \

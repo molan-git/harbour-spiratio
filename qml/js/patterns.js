@@ -35,10 +35,7 @@ var patterns = [
 
     /* ── Calm / Deep ── */
 
-    { id: "478", name: "4-7-8 Breathing", tag: "4-7-8", benefit: "Sleep, wind-down",
-      phases: [ {t:"in", s:4}, {t:"hold", s:7}, {t:"out", s:8} ] },
-
-    { id: "deepcalm", name: "Deep Calm", tag: "4-7-8-0", benefit: "Parasympathetic, anxiety",
+    { id: "478", name: "Deep Calm", tag: "4-7-8", benefit: "Sleep, wind-down",
       phases: [ {t:"in", s:4}, {t:"hold", s:7}, {t:"out", s:8} ] },
 
     { id: "pranayama", name: "Pranayama", tag: "7-4-8-4", benefit: "HRV, cardiorespiratory",

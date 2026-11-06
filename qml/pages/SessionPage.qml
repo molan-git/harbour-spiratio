@@ -91,7 +91,7 @@ Page {
     function playCue(type) {
         if (!soundOn())
             return
-        var vol = Settings.value("volume", "80") / 100
+        var vol = Settings.value("volume", "50") / 100
         var s
 
         if (type === "in")
@@ -101,9 +101,10 @@ Page {
         else
             s = Settings.value("soundHold", "gong1")
 
-        if (s === "bell1") { bell1.volume = vol; bell1.play() }
-        else if (s === "bell2") { bell2.volume = vol; bell2.play() }
-        else { gong1.volume = vol; gong1.play() }
+        if (s === "bell1")       { bell1.volume = vol; bell1.play() }
+        else if (s === "bell2")  { bell2.volume = vol; bell2.play() }
+        else if (s === "gong2")  { gong2.volume = vol; gong2.play() }
+        else                     { gong1.volume = vol; gong1.play() }
     }
 
     function phaseLabel(type) {
@@ -122,7 +123,7 @@ Page {
     property string bigLabel: finished ? qsTr("Session complete")
                                        : (running ? phaseLabel(phases.length ? phases[phaseIndex].t : "hold")
                                                   : qsTr("Paused"))
-    property string bigCount: finished ? "" : (running ? "" + Math.ceil(phases.length ? phases[phaseIndex].s - phaseElapsed : 0) : "")
+    property string bigCount: finished ? "" : ("" + Math.ceil(phases.length ? phases[phaseIndex].s - phaseElapsed : 0))
     property string timeLine: durationMinutes > 0
                               ? (finished ? "" : qsTr("%1 left").arg(fmtTime(durationMinutes * 60 - sessionElapsed)))
                               : fmtTime(sessionElapsed)
@@ -139,46 +140,65 @@ Page {
         id: gong1
         source: "/usr/share/harbour-spiratio/sounds/gong1.wav"
     }
+    SoundEffect {
+        id: gong2
+        source: "/usr/share/harbour-spiratio/sounds/gong2.wav"
+    }
 
-    SilicaFlickable {
+    Item {
         anchors.fill: parent
-        contentHeight: column.height
 
+        // Top: page header
         Column {
-            id: column
+            id: topCol
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.right: parent.right
             width: parent.width
-            spacing: Theme.paddingMedium
 
             PageHeader {
+                width: parent.width
                 title: pattern ? Tr.trName(pattern.id) : qsTr("Spiratio")
                 description: pattern ? "(" + pattern.tag + ") – " + Tr.trBenefit(pattern.id) : ""
             }
+        }
 
-            BreathGraph {
-                id: graph
-                width: Math.min(parent.width - 2 * Theme.horizontalPageMargin, Screen.height * 0.5)
-                height: width
-                x: (parent.width - width) / 2
-                phases: page.phases
-                cycleTime: page.cycleTime
-                timeInCycle: page.timeInCycle
-            }
+        // Bottom: labels + buttons
+        Column {
+            id: bottomCol
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: Theme.paddingLarge
+            anchors.left: parent.left
+            anchors.right: parent.right
+            width: parent.width
+            spacing: Theme.paddingMedium
 
+            // Breath step indicator
             Label {
-                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                height: Theme.fontSizeHuge * 1.4
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
                 text: page.bigLabel
                 font.pixelSize: Theme.fontSizeHuge
                 color: Theme.highlightColor
             }
 
+            // Breath step timer
             Label {
-                anchors.horizontalCenter: parent.horizontalCenter
+                width: parent.width
+                height: Theme.fontSizeHuge * 1.4
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
                 text: page.bigCount
                 font.pixelSize: Theme.fontSizeHuge
                 color: Theme.highlightColor
                 visible: text.length > 0
             }
 
+            // Remaining Time
             Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 text: page.timeLine
@@ -186,9 +206,14 @@ Page {
                 color: Theme.secondaryHighlightColor
             }
 
+            Item {
+                width: parent.width
+                height: Theme.paddingLarge
+            }
+
             Button {
+                width: parent.width - 2 * Theme.horizontalPageMargin
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width * 0.8
                 text: page.finished ? qsTr("Done")
                                     : (page.running ? qsTr("Pause") : (page.sessionElapsed > 0 ? qsTr("Resume") : qsTr("Start")))
                 onClicked: {
@@ -202,13 +227,22 @@ Page {
                     }
                 }
             }
+        }
 
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                width: parent.width * 0.8
-                text: qsTr("Stop session")
-                visible: page.sessionElapsed > 0 && !page.finished
-                onClicked: pageStack.pop()
+        // BreathGraph fills remaining space, always square
+        Item {
+            id: graphArea
+            anchors.top: topCol.bottom
+            anchors.bottom: bottomCol.top
+            anchors.left: parent.left
+            anchors.right: parent.right
+
+            BreathGraph {
+                id: graph
+                anchors.fill: parent
+                phases: page.phases
+                cycleTime: page.cycleTime
+                timeInCycle: page.timeInCycle
             }
         }
     }

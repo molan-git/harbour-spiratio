@@ -228,10 +228,6 @@
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Stop session</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsPage</name>
@@ -299,10 +295,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>4-7-8 Breathing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Deep Calm</source>
         <translation type="unfinished"></translation>
     </message>
@@ -343,14 +335,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sleep, wind-down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Parasympathetic, anxiety</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>HRV, cardiorespiratory</source>
         <translation type="unfinished"></translation>
     </message>
@@ -360,6 +344,10 @@
     </message>
     <message>
         <source>Custom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sleep, wind-down, anxiety</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
