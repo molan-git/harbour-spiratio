@@ -4,11 +4,8 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    property bool soundEnabled
-    property real volume
-    property string soundIn
-    property string soundOut
-    property string soundHold
+    // sound file names shown in the combos, index matches the menu items
+    property var soundNames: ["bell1", "bell2", "gong1", "gong2"]
 
     SilicaFlickable {
         anchors.fill: parent
@@ -30,7 +27,6 @@ Page {
                 automaticCheck: false
                 onClicked: checked = !checked
                 onCheckedChanged: {
-                    page.soundEnabled = checked
                     Settings.setValue("soundEnabled", checked ? "true" : "false")
                 }
                 Component.onCompleted: {
@@ -52,12 +48,10 @@ Page {
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
                         return
-                    var names = ["bell1", "bell2", "gong1", "gong2"]
-                    page.soundIn = names[currentIndex]
-                    Settings.setValue("soundIn", page.soundIn)
+                    Settings.setValue("soundIn", page.soundNames[currentIndex])
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundIn)
+                    var idx = page.soundNames.indexOf(Settings.value("soundIn", "bell1"))
                     currentIndex = (idx >= 0) ? idx : 0
                 }
             }
@@ -76,12 +70,10 @@ Page {
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
                         return
-                    var names = ["bell1", "bell2", "gong1", "gong2"]
-                    page.soundOut = names[currentIndex]
-                    Settings.setValue("soundOut", page.soundOut)
+                    Settings.setValue("soundOut", page.soundNames[currentIndex])
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundOut)
+                    var idx = page.soundNames.indexOf(Settings.value("soundOut", "bell2"))
                     currentIndex = (idx >= 0) ? idx : 1
                 }
             }
@@ -100,12 +92,10 @@ Page {
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
                         return
-                    var names = ["bell1", "bell2", "gong1", "gong2"]
-                    page.soundHold = names[currentIndex]
-                    Settings.setValue("soundHold", page.soundHold)
+                    Settings.setValue("soundHold", page.soundNames[currentIndex])
                 }
                 Component.onCompleted: {
-                    var idx = ["bell1", "bell2", "gong1", "gong2"].indexOf(page.soundHold)
+                    var idx = page.soundNames.indexOf(Settings.value("soundHold", "gong1"))
                     currentIndex = (idx >= 0) ? idx : 2
                 }
             }
@@ -122,7 +112,6 @@ Page {
                 value: Settings.value("volume", "50")
                 valueText: Math.round(value) + " %"
                 onValueChanged: {
-                    page.volume = value
                     Settings.setValue("volume", "" + Math.round(value))
                 }
             }
