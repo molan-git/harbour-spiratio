@@ -4,26 +4,30 @@
 #include <QObject>
 #include <QString>
 #include <QSettings>
+#include <QStandardPaths>
+#include <QCoreApplication>
 
-/*
- * Tiny QSettings-backed key/value store exposed to QML as "Settings".
- * Used to persist custom breathing patterns and the last selection.
- */
 class Settings : public QObject
 {
     Q_OBJECT
 public:
-    explicit Settings(QObject *parent = nullptr) : QObject(parent) {}
+    explicit Settings(QObject *parent = nullptr) : QObject(parent) {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation)
+                       + "/" + QCoreApplication::applicationName() + ".conf";
+        m_settings = new QSettings(path, QSettings::NativeFormat, this);
+    }
 
     Q_INVOKABLE QString value(const QString &key, const QString &defaultValue = QString()) const {
-        QSettings s;
-        return s.value(key, defaultValue).toString();
+        return m_settings->value(key, defaultValue).toString();
     }
 
     Q_INVOKABLE void setValue(const QString &key, const QString &value) {
-        QSettings s;
-        s.setValue(key, value);
+        m_settings->setValue(key, value);
+        m_settings->sync();
     }
+
+private:
+    QSettings *m_settings;
 };
 
 #endif // SETTINGS_H

@@ -130,10 +130,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Session ends automatically after %1 minutes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Runs until you stop it</source>
         <translation type="unfinished"></translation>
     </message>
@@ -155,6 +151,10 @@
     </message>
     <message>
         <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ends automatically after %1 minutes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -8,8 +8,8 @@
 int main(int argc, char *argv[])
 {
     QScopedPointer<QGuiApplication> app(SailfishApp::application(argc, argv));
-    app->setApplicationName("harbour-spiratio");
-    app->setOrganizationName("harbour-spiratio");
+    // ← no setApplicationName / setOrganizationName needed,
+    //   SailfishApp already sets them from the .desktop file
 
     QScopedPointer<QQuickView> view(SailfishApp::createView());
     view->rootContext()->setContextProperty("Settings", new Settings(app.data()));

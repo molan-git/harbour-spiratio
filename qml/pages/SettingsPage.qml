@@ -4,11 +4,11 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    property bool soundEnabled: Settings.value("soundEnabled", "true") === "true"
-    property real volume: Settings.value("volume", "50")
-    property string soundIn: Settings.value("soundIn", "bell1")
-    property string soundOut: Settings.value("soundOut", "bell2")
-    property string soundHold: Settings.value("soundHold", "gong1")
+    property bool soundEnabled
+    property real volume
+    property string soundIn
+    property string soundOut
+    property string soundHold
 
     SilicaFlickable {
         anchors.fill: parent
@@ -23,16 +23,18 @@ Page {
             SectionHeader { text: qsTr("Sounds") }
 
             TextSwitch {
+                id: soundSwitch
                 width: parent.width
                 text: qsTr("Sound")
                 description: qsTr("Play a sound when the breathing direction changes")
-                checked: page.soundEnabled
-                automaticCheck: true
+                automaticCheck: false
+                onClicked: checked = !checked
                 onCheckedChanged: {
-                    if (checked !== page.soundEnabled) {
-                        page.soundEnabled = checked
-                        Settings.setValue("soundEnabled", checked ? "true" : "false")
-                    }
+                    page.soundEnabled = checked
+                    Settings.setValue("soundEnabled", checked ? "true" : "false")
+                }
+                Component.onCompleted: {
+                    checked = Settings.value("soundEnabled", "true") === "true"
                 }
             }
 
@@ -48,6 +50,8 @@ Page {
                     MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
+                    if (currentIndex < 0)
+                        return
                     var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundIn = names[currentIndex]
                     Settings.setValue("soundIn", page.soundIn)
@@ -70,6 +74,8 @@ Page {
                     MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
+                    if (currentIndex < 0)
+                        return
                     var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundOut = names[currentIndex]
                     Settings.setValue("soundOut", page.soundOut)
@@ -92,6 +98,8 @@ Page {
                     MenuItem { text: "Gong 2" }
                 }
                 onCurrentIndexChanged: {
+                    if (currentIndex < 0)
+                        return
                     var names = ["bell1", "bell2", "gong1", "gong2"]
                     page.soundHold = names[currentIndex]
                     Settings.setValue("soundHold", page.soundHold)
@@ -111,7 +119,7 @@ Page {
                 minimumValue: 0
                 maximumValue: 100
                 stepSize: 5
-                value: page.volume
+                value: Settings.value("volume", "50")
                 valueText: Math.round(value) + " %"
                 onValueChanged: {
                     page.volume = value

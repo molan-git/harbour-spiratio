@@ -94,7 +94,7 @@ Page {
                     page.durationMinutes = page.durations[currentIndex]
                 }
                 description: page.durationMinutes > 0
-                             ? qsTr("Session ends automatically after %1 minutes").arg(page.durationMinutes)
+                             ? qsTr("Ends automatically after %1 minutes").arg(page.durationMinutes)
                              : qsTr("Runs until you stop it")
             }
 
