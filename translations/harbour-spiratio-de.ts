@@ -39,6 +39,41 @@
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Credits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>CreditPage</name>
+    <message>
+        <source>German</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Credits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Audio files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Files have been manually edited for use in this app under the</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pixabay Content License</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>

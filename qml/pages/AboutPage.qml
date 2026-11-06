@@ -88,7 +88,6 @@ Page {
                 }
             }
 
-            /*
             Button {
                 width: parent.width * 0.8
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -99,13 +98,12 @@ Page {
                     pageStack.animatorPush(Qt.resolvedUrl("CreditPage.qml"))
                 }
             }
-            */
 
-            /*
             SectionHeader {
                 text: qsTr("Support")
             }
 
+            /*
             Label {
                 width: parent.width - 2 * Theme.horizontalPageMargin
                 x: Theme.horizontalPageMargin

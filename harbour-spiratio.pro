@@ -23,6 +23,7 @@ DISTFILES += \
     qml/harbour-spiratio.qml \
     qml/js/translations.js \
     qml/pages/AboutPage.qml \
+    qml/pages/CreditPage.qml \
     qml/pages/MainPage.qml \
     qml/pages/PatternEditorPage.qml \
     qml/pages/SessionPage.qml \
