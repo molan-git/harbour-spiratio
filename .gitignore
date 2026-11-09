@@ -11,3 +11,4 @@ moc_*.cpp
 *.pro.user
 *.autosave
 harbour-spiratio.pro.user
+*.user
