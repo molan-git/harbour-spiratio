@@ -38,7 +38,7 @@ Clone or download this repository and import it into your Sailfish OS IDE using 
 
 ## Repository branches
 
-* `master`: Release branch containing the current version of Spiratio.
+* `main`: Release branch containing the current version of Spiratio.
 
 ## Contributions
 
