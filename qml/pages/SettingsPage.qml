@@ -5,7 +5,7 @@ Page {
     id: page
 
     // sound file names shown in the combos, index matches the menu items
-    property var soundNames: ["bell1", "bell2", "gong1", "gong2"]
+    property var soundNames: ["bell1", "bell2", "gong1", "gong2", "voiceIn", "voiceOut", "voiceHold"]
 
     SilicaFlickable {
         anchors.fill: parent
@@ -37,6 +37,9 @@ Page {
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
+                    MenuItem { text: "Breath in - Voice" }
+                    MenuItem { text: "Breath out - Voice" }
+                    MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
@@ -59,6 +62,9 @@ Page {
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
+                    MenuItem { text: "Breath in - Voice" }
+                    MenuItem { text: "Breath out - Voice" }
+                    MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
@@ -81,6 +87,9 @@ Page {
                     MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
+                    MenuItem { text: "Breath in - Voice" }
+                    MenuItem { text: "Breath out - Voice" }
+                    MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)

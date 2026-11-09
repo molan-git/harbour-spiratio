@@ -37,6 +37,9 @@ DISTFILES += \
     sounds/gong2.wav \
     sounds/bell1.wav \
     sounds/bell2.wav \
+    sounds/voiceIn.wav \
+    sounds/voiceOut.wav \
+    sounds/voiceHold.wav \
     translations/*.ts \
     harbour-spiratio.desktop
 

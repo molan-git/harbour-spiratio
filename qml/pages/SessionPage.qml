@@ -18,6 +18,9 @@ Page {
     property real sessionElapsed: 0
     property real timeInCycle: 0
     property real lastTick: 0
+    // volume is read once here; it cannot change while a session runs,
+    // because the Settings page is not reachable from a running session
+    readonly property real cueVolume: Settings.value("volume", "50") / 100
     property bool running: false
     property bool finished: false
     readonly property bool isSession: true
@@ -112,10 +115,8 @@ Page {
             return   // "done": silent for now, or add a dedicated sound later
 
         var e = effectFor(name)
-        if (e && e.status === SoundEffect.Ready) {
-            e.volume = Settings.value("volume", "50") / 100
+        if (e && e.status === SoundEffect.Ready)
             e.play()
-        }
     }
 
     function effectFor(name) {
@@ -123,6 +124,9 @@ Page {
         if (name === "bell2") return bell2
         if (name === "gong1") return gong1
         if (name === "gong2") return gong2
+        if (name === "voiceIn") return voiceIn
+        if (name === "voiceOut") return voiceOut
+        if (name === "voiceHold") return voiceHold
         return null   // unknown name → silence instead of a "wrong" sound
     }
 
@@ -150,18 +154,37 @@ Page {
     SoundEffect {
         id: bell1
         source: "/usr/share/harbour-spiratio/sounds/bell1.wav"
+        volume: page.cueVolume
     }
     SoundEffect {
         id: bell2
         source: "/usr/share/harbour-spiratio/sounds/bell2.wav"
+        volume: page.cueVolume
     }
     SoundEffect {
         id: gong1
         source: "/usr/share/harbour-spiratio/sounds/gong1.wav"
+        volume: page.cueVolume
     }
     SoundEffect {
         id: gong2
         source: "/usr/share/harbour-spiratio/sounds/gong2.wav"
+        volume: page.cueVolume
+    }
+    SoundEffect {
+        id: voiceIn
+        source: "/usr/share/harbour-spiratio/sounds/voiceIn.wav"
+        volume: page.cueVolume
+    }
+    SoundEffect {
+        id: voiceOut
+        source: "/usr/share/harbour-spiratio/sounds/voiceOut.wav"
+        volume: page.cueVolume
+    }
+    SoundEffect {
+        id: voiceHold
+        source: "/usr/share/harbour-spiratio/sounds/voiceHold.wav"
+        volume: page.cueVolume
     }
 
     Item {
