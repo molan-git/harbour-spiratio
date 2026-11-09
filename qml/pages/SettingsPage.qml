@@ -20,18 +20,11 @@ Page {
             SectionHeader { text: qsTr("Sounds") }
 
             TextSwitch {
-                id: soundSwitch
                 width: parent.width
                 text: qsTr("Sound")
                 description: qsTr("Play a sound when the breathing direction changes")
-                automaticCheck: false
-                onClicked: checked = !checked
-                onCheckedChanged: {
-                    Settings.setValue("soundEnabled", checked ? "true" : "false")
-                }
-                Component.onCompleted: {
-                    checked = Settings.value("soundEnabled", "true") === "true"
-                }
+                onCheckedChanged: Settings.setValue("soundEnabled", checked ? "true" : "false")
+                Component.onCompleted: checked = Settings.value("soundEnabled", "true") === "true"
             }
 
             ComboBox {

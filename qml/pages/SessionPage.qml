@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import QtQuick.Window 2.0
 import QtMultimedia 5.0
 import "../js/translations.js" as Tr
 import "../components"
@@ -18,14 +17,19 @@ Page {
     property real phaseElapsed: 0
     property real sessionElapsed: 0
     property real timeInCycle: 0
+    property real lastTick: 0
     property bool running: false
     property bool finished: false
     readonly property bool isSession: true
 
     onStatusChanged: {
         if (status === PageStatus.Active && !finished && sessionElapsed === 0) {
+            lastTick = 0
             running = true
             cueCurrent()
+        } else if (status === PageStatus.Inactive) {
+            // another page was pushed on top of us: stop ticking and cueing
+            running = false
         }
     }
 
@@ -46,7 +50,13 @@ Page {
         interval: 50
         repeat: true
         running: page.running && !page.finished
-        onTriggered: page.advance(interval / 1000)
+        onTriggered: {
+            var now = Date.now()
+            var dt = page.lastTick === 0 ? 0 : (now - page.lastTick) / 1000
+            page.lastTick = now
+            if (dt > 1) dt = 1   // cap: no cue bursts after long throttling
+            page.advance(dt)
+        }
     }
 
     function advance(dt) {
@@ -72,7 +82,7 @@ Page {
     function finishSession() {
         running = false
         finished = true
-        playCue("done")
+        playCue("done")   // "done" is intentionally silent in playCue for now
     }
 
     function cueCurrent() {
@@ -91,20 +101,29 @@ Page {
     function playCue(type) {
         if (!soundOn())
             return
-        var vol = Settings.value("volume", "50") / 100
-        var s
-
+        var name
         if (type === "in")
-            s = Settings.value("soundIn", "bell1")
+            name = Settings.value("soundIn", "bell1")
         else if (type === "out")
-            s = Settings.value("soundOut", "bell2")
+            name = Settings.value("soundOut", "bell2")
+        else if (type === "hold")
+            name = Settings.value("soundHold", "gong1")
         else
-            s = Settings.value("soundHold", "gong1")
+            return   // "done": silent for now, or add a dedicated sound later
 
-        if (s === "bell1")       { bell1.volume = vol; bell1.play() }
-        else if (s === "bell2")  { bell2.volume = vol; bell2.play() }
-        else if (s === "gong2")  { gong2.volume = vol; gong2.play() }
-        else                     { gong1.volume = vol; gong1.play() }
+        var e = effectFor(name)
+        if (e && e.status === SoundEffect.Ready) {
+            e.volume = Settings.value("volume", "50") / 100
+            e.play()
+        }
+    }
+
+    function effectFor(name) {
+        if (name === "bell1") return bell1
+        if (name === "bell2") return bell2
+        if (name === "gong1") return gong1
+        if (name === "gong2") return gong2
+        return null   // unknown name → silence instead of a "wrong" sound
     }
 
     function phaseLabel(type) {
@@ -148,19 +167,11 @@ Page {
     Item {
         anchors.fill: parent
 
-        // Top: page header
-        Column {
-            id: topCol
-            anchors.top: parent.top
-            anchors.left: parent.left
-            anchors.right: parent.right
+        PageHeader {
+            id: header
             width: parent.width
-
-            PageHeader {
-                width: parent.width
-                title: pattern ? Tr.trName(pattern.id) : qsTr("Spiratio")
-                description: pattern ? "(" + pattern.tag + ") – " + Tr.trBenefit(pattern.id) : ""
-            }
+            title: pattern ? Tr.trName(pattern.id) : qsTr("Spiratio")
+            description: pattern ? "(" + pattern.tag + ") – " + Tr.trBenefit(pattern.id) : ""
         }
 
         // Bottom: labels + buttons
@@ -222,17 +233,19 @@ Page {
                     } else if (page.running) {
                         page.running = false
                     } else {
+                        page.lastTick = 0
                         page.running = true
-                        page.cueCurrent()
+                        if (page.phaseElapsed === 0)
+                            page.cueCurrent()   // only cue if at the start of a phase
                     }
                 }
             }
         }
 
-        // BreathGraph fills remaining space, always square
+        // BreathGraph fills remaining space
         Item {
             id: graphArea
-            anchors.top: topCol.bottom
+            anchors.top: header.bottom
             anchors.bottom: bottomCol.top
             anchors.left: parent.left
             anchors.right: parent.right

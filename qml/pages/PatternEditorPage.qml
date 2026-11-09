@@ -6,21 +6,16 @@ Page {
     id: page
 
     property var editing: null
-    property string nameText: ""
-    property string inText: "4"
-    property string holdInText: "0"
-    property string outText: "4"
-    property string holdOutText: "0"
     property string attentionText: ""
 
     onStatusChanged: {
         if (status === PageStatus.Active && editing) {
-            nameText = editing.name
+            nameField.text = editing.name
             var p = editing.phases
-            inText = phaseLen(p, "in", 0)
-            outText = phaseLen(p, "out", 0)
-            holdInText = phaseLen(p, "hold", 0)
-            holdOutText = phaseLen(p, "hold", 1)
+            inField.text = phaseLen(p, "in", 0)
+            holdInField.text = phaseLen(p, "hold", 0)
+            outField.text = phaseLen(p, "out", 0)
+            holdOutField.text = phaseLen(p, "hold", 1)
         }
     }
 
@@ -38,18 +33,20 @@ Page {
     function buildPhases(inS, hInS, outS, hOutS) {
         var phases = []
         if (inS > 0)   phases.push({ t: "in",   s: inS })
-        if (hInS > 0)  phases.push({ t: "hold",  s: hInS })
-        if (outS > 0)  phases.push({ t: "out",   s: outS })
-        if (hOutS > 0) phases.push({ t: "hold",  s: hOutS })
+        if (hInS > 0)  phases.push({ t: "hold", s: hInS })
+        if (outS > 0)  phases.push({ t: "out",  s: outS })
+        if (hOutS > 0) phases.push({ t: "hold", s: hOutS })
         return phases
     }
 
     function save() {
-        var inS = parseInt(inText) || 0
-        var hInS = parseInt(holdInText) || 0
-        var outS = parseInt(outText) || 0
-        var hOutS = parseInt(holdOutText) || 0
-        var nm = nameText.trim()
+        attentionText = ""
+
+        var inS = parseInt(inField.text) || 0
+        var hInS = parseInt(holdInField.text) || 0
+        var outS = parseInt(outField.text) || 0
+        var hOutS = parseInt(holdOutField.text) || 0
+        var nm = nameField.text.trim()
 
         if (nm.length === 0) { attentionText = qsTr("Please give the pattern a name"); return }
         if (inS <= 0 || outS <= 0) { attentionText = qsTr("Inhale and exhale must be at least 1 second"); return }
@@ -102,10 +99,9 @@ Page {
                 width: parent.width
                 label: qsTr("Name")
                 placeholderText: qsTr("e.g. Evening calm")
-                text: page.nameText
-                onTextChanged: page.nameText = text
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                onTextChanged: page.attentionText = ""
             }
 
             Grid {
@@ -114,32 +110,36 @@ Page {
                 spacing: Theme.paddingMedium
 
                 TextField {
+                    id: inField
                     width: (parent.width - parent.spacing) / 2
                     label: qsTr("Breath in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
-                    text: page.inText
-                    onTextChanged: page.inText = text
+                    text: "4"
+                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
+                    id: holdInField
                     width: (parent.width - parent.spacing) / 2
                     label: qsTr("Hold after in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
-                    text: page.holdInText
-                    onTextChanged: page.holdInText = text
+                    text: "0"
+                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
+                    id: outField
                     width: (parent.width - parent.spacing) / 2
                     label: qsTr("Breath out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
-                    text: page.outText
-                    onTextChanged: page.outText = text
+                    text: "4"
+                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
+                    id: holdOutField
                     width: (parent.width - parent.spacing) / 2
                     label: qsTr("Hold after out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
-                    text: page.holdOutText
-                    onTextChanged: page.holdOutText = text
+                    text: "0"
+                    onTextChanged: page.attentionText = ""
                 }
             }
 

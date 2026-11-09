@@ -103,7 +103,7 @@ Page {
                 text: qsTr("Start")
                 width: parent.width * 0.8
                 enabled: page.findPattern(page.selectedId) !== null
-                onClicked: {
+                onClicked: if (!pageStack.busy) {
                     pageStack.push("SessionPage.qml", {
                         pattern: page.findPattern(page.selectedId),
                         durationMinutes: page.durationMinutes
