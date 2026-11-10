@@ -22,7 +22,14 @@ Download the latest release from:
 
 ## Screenshots
 
-<img width="200" title="Screenshot1" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot1.png"> <img width="200" title="Screenshot2" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot2.png"> <img width="200" title="Screenshot3" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot3.png">
+<img width="200" title="Screenshot1"
+     src="https://raw.githubusercontent.com/molan-git/harbour-spiratio/main/screenshots/screenshot1.png">
+
+<img width="200" title="Screenshot2"
+     src="https://raw.githubusercontent.com/molan-git/harbour-spiratio/main/screenshots/screenshot2.png">
+
+<img width="200" title="Screenshot3"
+     src="https://raw.githubusercontent.com/molan-git/harbour-spiratio/main/screenshots/screenshot3.png">
 
 
 ## Translations
