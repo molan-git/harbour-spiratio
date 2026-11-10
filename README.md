@@ -20,6 +20,11 @@ Download the latest release from:
 
 [no release yet]
 
+## Screenshots
+
+<img width="200" title="Screenshot1" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot1.png"> <img width="200" title="Screenshot2" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot2.png"> <img width="200" title="Screenshot3" src="https://github.com/molan-git/harbour-spiratio/blob/main/screenshots/screenshot3.png">
+
+
 ## Translations
 
 New languages can be added via GitHub. Incomplete translations may not be accepted or included in the app.
