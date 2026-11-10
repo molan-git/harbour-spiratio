@@ -1,10 +1,8 @@
 # Spiratio <img width="60" title="Page Home" src="https://github.com/molan-git/harbour-spiratio/blob/main/icons/172x172/harbour-spiratio.png">
 
-A breathing companion app for [Sailfish OS](https://sailfishos.org) which includes well-proven techniques, from quick stress relief to deep relaxation, with a live breath graph and optional audio cues.
-
 ## About
 
-Spiratio is a personal breathing companion, offering a range of proven breathing techniques to help manage stress, find calm, meditate and achieve deep relaxation.
+Spiratio is a personal breathing companion for Sailfish OS, offering a range of proven breathing techniques to help manage stress, find calm, meditate and achieve deep relaxation.
 
 Explore a variety of predefined breathing patterns or create your own. Follow your breathing in real time with a live breathing graph, with optional audio cues to guide each session. 
 
