@@ -1,5 +1,7 @@
 # Spiratio <img width="60" title="Page Home" src="https://github.com/molan-git/harbour-spiratio/blob/main/icons/172x172/harbour-spiratio.png">
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/G7W527ZZR9)
+
 ## About
 
 Spiratio is a personal breathing companion for Sailfish OS, offering a range of proven breathing techniques to help manage stress, find calm, meditate and achieve deep relaxation.
@@ -43,6 +45,7 @@ Clone or download this repository and import it into your Sailfish OS IDE using 
 ## Repository branches
 
 * `main`: Release branch containing the current version of Spiratio.
+* `feature-*`: Branches used for testing features under development.
 
 ## Contributions
 
