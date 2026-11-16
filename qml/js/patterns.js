@@ -27,9 +27,6 @@ var patterns = [
     { id: "samavritti", name: "Sama Vritti", tag: "4-4", benefit: "Steady baseline, pranayama",
       phases: [ {t:"in", s:4}, {t:"out", s:4} ] },
 
-    { id: "nadi", name: "Alternate Nostril", tag: "4-4-4-4", benefit: "Balance, meditation",
-      phases: [ {t:"in", s:4}, {t:"hold", s:4}, {t:"out", s:4}, {t:"hold", s:4} ] },
-
     { id: "ujjayi", name: "Ujjayi", tag: "7-0-7-0", benefit: "Vagal tone, baroreflex",
       phases: [ {t:"in", s:7}, {t:"out", s:7} ] },
 
