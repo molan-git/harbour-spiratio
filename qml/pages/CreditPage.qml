@@ -12,6 +12,12 @@ Page {
     ]
 
     readonly property var soundCredits: [
+        { name: "Breath in / out", author: "Sandra Lor-Zade",
+          authorUrl: "https://pixabay.com/de/users/sandritschka123-54954178/",
+          sourceUrl: "https://pixabay.com/" },
+        { name: "Hold", author: "Sandra Lor-Zade",
+          authorUrl: "https://pixabay.com/de/users/sandritschka123-54954178/",
+          sourceUrl: "https://pixabay.com/" },
         { name: "Bell 1", author: "freesound_community",
           authorUrl: "https://pixabay.com/users/freesound_community-46691455/",
           sourceUrl: "https://pixabay.com/" },
