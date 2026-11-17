@@ -147,10 +147,15 @@ Page {
                             MenuItem {
                                 text: qsTr("Delete")
                                 onClicked: {
-                                    var list = page.customPatterns
-                                    list.splice(index, 1)
-                                    Settings.setValue("customPatterns", JSON.stringify(list))
-                                    page.reloadPatterns()
+                                    var idx = index
+                                    var p = page
+                                    var s = Settings
+                                    customItem.remorseDelete(function() {
+                                        var list = p.customPatterns
+                                        list.splice(idx, 1)
+                                        s.setValue("customPatterns", JSON.stringify(list))
+                                        p.reloadPatterns()
+                                    })
                                 }
                             }
                         }
