@@ -106,11 +106,11 @@ Page {
             return
         var name
         if (type === "in")
-            name = Settings.value("soundIn", "bell1")
+            name = Settings.value("soundIn", "gong1")
         else if (type === "out")
-            name = Settings.value("soundOut", "bell2")
+            name = Settings.value("soundOut", "gong2")
         else if (type === "hold")
-            name = Settings.value("soundHold", "gong1")
+            name = Settings.value("soundHold", "gong3")
         else
             return   // "done": silent for now, or add a dedicated sound later
 
@@ -120,10 +120,9 @@ Page {
     }
 
     function effectFor(name) {
-        if (name === "bell1") return bell1
-        if (name === "bell2") return bell2
         if (name === "gong1") return gong1
         if (name === "gong2") return gong2
+        if (name === "gong3") return gong3
         if (name === "voiceIn") return voiceIn
         if (name === "voiceOut") return voiceOut
         if (name === "voiceHold") return voiceHold
@@ -152,16 +151,6 @@ Page {
                               : fmtTime(sessionElapsed)
 
     SoundEffect {
-        id: bell1
-        source: "/usr/share/harbour-spiratio/sounds/bell1.wav"
-        volume: page.cueVolume
-    }
-    SoundEffect {
-        id: bell2
-        source: "/usr/share/harbour-spiratio/sounds/bell2.wav"
-        volume: page.cueVolume
-    }
-    SoundEffect {
         id: gong1
         source: "/usr/share/harbour-spiratio/sounds/gong1.wav"
         volume: page.cueVolume
@@ -169,6 +158,11 @@ Page {
     SoundEffect {
         id: gong2
         source: "/usr/share/harbour-spiratio/sounds/gong2.wav"
+        volume: page.cueVolume
+    }
+    SoundEffect {
+        id: gong3
+        source: "/usr/share/harbour-spiratio/sounds/gong3.wav"
         volume: page.cueVolume
     }
     SoundEffect {

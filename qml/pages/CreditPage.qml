@@ -18,17 +18,8 @@ Page {
         { name: "Hold", author: "Sandra Lor-Zade",
           authorUrl: "https://pixabay.com/de/users/sandritschka123-54954178/",
           sourceUrl: "https://pixabay.com/" },
-        { name: "Bell 1", author: "freesound_community",
+        { name: "Gong", author: "freesound_community",
           authorUrl: "https://pixabay.com/users/freesound_community-46691455/",
-          sourceUrl: "https://pixabay.com/" },
-        { name: "Bell 2", author: "DRAGON-STUDIO",
-          authorUrl: "https://pixabay.com/users/dragon-studio-38165424/",
-          sourceUrl: "https://pixabay.com/" },
-        { name: "Gong 1", author: "freesound_community",
-          authorUrl: "https://pixabay.com/users/freesound_community-46691455/",
-          sourceUrl: "https://pixabay.com/sound-effects/" },
-        { name: "Gong 2", author: "u_n1up2g5sdg",
-          authorUrl: "https://pixabay.com/users/u_n1up2g5sdg-40232378/",
           sourceUrl: "https://pixabay.com/" }
     ]
 

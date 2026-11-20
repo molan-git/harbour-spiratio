@@ -35,8 +35,7 @@ DISTFILES += \
     rpm/harbour-spiratio.spec \
     sounds/gong1.wav \
     sounds/gong2.wav \
-    sounds/bell1.wav \
-    sounds/bell2.wav \
+    sounds/gong3.wav \
     sounds/voiceIn.wav \
     sounds/voiceOut.wav \
     sounds/voiceHold.wav \

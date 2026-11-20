@@ -271,18 +271,6 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Sounds</source>
-        <translation>Töne</translation>
-    </message>
-    <message>
-        <source>Sound</source>
-        <translation>Ton</translation>
-    </message>
-    <message>
-        <source>Play a sound when the breathing direction changes</source>
-        <translation>Ton bei Wechsel der Atemrichtung abspielen</translation>
-    </message>
-    <message>
         <source>Breath in</source>
         <translation>Einatmen</translation>
     </message>
@@ -297,6 +285,10 @@
     <message>
         <source>Volume</source>
         <translation>Lautstärke</translation>
+    </message>
+    <message>
+        <source>Play sounds</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -322,10 +314,6 @@
         <translation>Sama Vritti</translation>
     </message>
     <message>
-        <source>Alternate Nostril</source>
-        <translation>Wechselnde Nasenatmung</translation>
-    </message>
-    <message>
         <source>Ujjayi</source>
         <translation>Ujjayi</translation>
     </message>
@@ -342,28 +330,8 @@
         <translation>Lippenbremse Atmung</translation>
     </message>
     <message>
-        <source>Energy, alertness</source>
-        <translation>Energie, Wachheit</translation>
-    </message>
-    <message>
-        <source>Fastest stress relief</source>
-        <translation>Schnellste Stressreduktion</translation>
-    </message>
-    <message>
-        <source>Focus, acute stress</source>
-        <translation>Fokus, akuter Stress</translation>
-    </message>
-    <message>
-        <source>HRV, emotional balance</source>
-        <translation>HRV, emotionale Balance</translation>
-    </message>
-    <message>
         <source>Steady baseline, pranayama</source>
         <translation>Stabile Basis, Pranayama</translation>
-    </message>
-    <message>
-        <source>Balance, meditation</source>
-        <translation>Balance, Meditation</translation>
     </message>
     <message>
         <source>Vagal tone, baroreflex</source>
@@ -382,8 +350,24 @@
         <translation>Eigene</translation>
     </message>
     <message>
-        <source>Sleep, wind-down, anxiety</source>
-        <translation>Schlaf, Runterkommen, innere Unruhe</translation>
+        <source>Energizing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress relief</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus, calm, stress control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HRV optimisation, daily calm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sleep, wind-down</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

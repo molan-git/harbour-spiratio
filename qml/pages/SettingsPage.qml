@@ -5,7 +5,7 @@ Page {
     id: page
 
     // sound file names shown in the combos, index matches the menu items
-    property var soundNames: ["bell1", "bell2", "gong1", "gong2", "voiceIn", "voiceOut", "voiceHold"]
+    property var soundNames: ["gong1", "gong2", "gong3","voiceIn", "voiceOut", "voiceHold"]
 
     SilicaFlickable {
         anchors.fill: parent
@@ -17,12 +17,11 @@ Page {
 
             PageHeader { title: qsTr("Settings") }
 
-            SectionHeader { text: qsTr("Sounds") }
+            // SectionHeader { text: "Sounds" }
 
             TextSwitch {
                 width: parent.width
-                text: qsTr("Sound")
-                description: qsTr("Play a sound when the breathing direction changes")
+                text: qsTr("Play sounds")
                 onCheckedChanged: Settings.setValue("soundEnabled", checked ? "true" : "false")
                 Component.onCompleted: checked = Settings.value("soundEnabled", "true") === "true"
             }
@@ -33,13 +32,10 @@ Page {
                 label: qsTr("Breath in")
                 currentIndex: -1
                 menu: ContextMenu {
-                    MenuItem { text: "Bell 1" }
-                    MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
+                    MenuItem { text: "Gong 3" }
                     MenuItem { text: "Breath in - Voice" }
-                    MenuItem { text: "Breath out - Voice" }
-                    MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
@@ -58,13 +54,10 @@ Page {
                 label: qsTr("Breath out")
                 currentIndex: -1
                 menu: ContextMenu {
-                    MenuItem { text: "Bell 1" }
-                    MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
-                    MenuItem { text: "Breath in - Voice" }
+                    MenuItem { text: "Gong 3" }
                     MenuItem { text: "Breath out - Voice" }
-                    MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {
                     if (currentIndex < 0)
@@ -83,12 +76,9 @@ Page {
                 label: qsTr("Hold")
                 currentIndex: -1
                 menu: ContextMenu {
-                    MenuItem { text: "Bell 1" }
-                    MenuItem { text: "Bell 2" }
                     MenuItem { text: "Gong 1" }
                     MenuItem { text: "Gong 2" }
-                    MenuItem { text: "Breath in - Voice" }
-                    MenuItem { text: "Breath out - Voice" }
+                    MenuItem { text: "Gong 3" }
                     MenuItem { text: "Hold - Voice" }
                 }
                 onCurrentIndexChanged: {

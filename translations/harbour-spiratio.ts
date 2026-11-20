@@ -271,18 +271,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sounds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Sound</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Play a sound when the breathing direction changes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Breath in</source>
         <translation type="unfinished"></translation>
     </message>
@@ -296,6 +284,10 @@
     </message>
     <message>
         <source>Volume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play sounds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -322,10 +314,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alternate Nostril</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Ujjayi</source>
         <translation type="unfinished"></translation>
     </message>
@@ -342,27 +330,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Energy, alertness</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fastest stress relief</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Focus, acute stress</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HRV, emotional balance</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Steady baseline, pranayama</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Balance, meditation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -382,7 +350,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sleep, wind-down, anxiety</source>
+        <source>Energizing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress relief</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus, calm, stress control</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HRV optimisation, daily calm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sleep, wind-down</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
