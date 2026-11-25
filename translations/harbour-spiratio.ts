@@ -130,10 +130,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Custom breathing patterns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
@@ -146,11 +142,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add breathing pattern</source>
+        <source>1 min</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1 min</source>
+        <source>Add custom breathing pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ends automatically after %1 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs until you stop it</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

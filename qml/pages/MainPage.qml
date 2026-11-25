@@ -10,7 +10,6 @@ Page {
     property var patterns: []
     property string selectedId: ""
     property int revision: 0
-    property bool hasVisiblePresets: false
     property int durationMinutes: 10
     property var durations: [1, 3, 5, 10, 15, 20, 30, 0]
     property var durationLabels: [qsTr("1 min"), qsTr("3 min"), qsTr("5 min"), qsTr("10 min"), qsTr("15 min"), qsTr("20 min"), qsTr("30 min"), qsTr("Endless")]
@@ -36,21 +35,15 @@ Page {
     function reloadPatterns() {
         revision++
         var vis = visiblePresets()
-        hasVisiblePresets = vis.length > 0
         try {
             customPatterns = JSON.parse(Settings.value("customPatterns", "[]"))
         } catch (e) {
             customPatterns = []
         }
-        patterns = vis.concat(customPatterns)
+        patterns = customPatterns.concat(vis)
         selectedId = Settings.value("lastPattern", "")
         if (!findPattern(selectedId) && patterns.length > 0)
             selectedId = patterns[0].id
-    }
-
-    function hidePattern(id) {
-        Settings.setValue("hidden_" + id, "true")
-        reloadPatterns()
     }
 
     function findPattern(id) {
@@ -63,6 +56,24 @@ Page {
     function selectPattern(id) {
         selectedId = id
         Settings.setValue("lastPattern", id)
+    }
+
+    function hidePattern(id) {
+        Settings.setValue("hidden_" + id, "true")
+        reloadPatterns()
+    }
+
+    function deleteCustomPattern(id) {
+        for (var i = 0; i < customPatterns.length; i++) {
+            if (customPatterns[i].id === id)
+                customPatterns.splice(i, 1)
+        }
+        Settings.setValue("customPatterns", JSON.stringify(customPatterns))
+        reloadPatterns()
+    }
+
+    function isCustom(p) {
+        return p && typeof p.id === "string" && p.id.substring(0, 7) === "custom-"
     }
 
     SilicaFlickable {
@@ -79,7 +90,7 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
-                text: qsTr("Add breathing pattern")
+                text: qsTr("Add custom breathing pattern")
                 onClicked: pageStack.push("PatternEditorPage.qml")
             }
         }
@@ -116,6 +127,9 @@ Page {
                     currentIndex = (idx >= 0) ? idx : page.durations.indexOf(10)
                     page.durationMinutes = page.durations[currentIndex]
                 }
+                description: page.durationMinutes > 0
+                             ? qsTr("Ends automatically after %1 minutes").arg(page.durationMinutes)
+                             : qsTr("Runs until you stop it")
             }
 
             Item { width: parent.width; height: Theme.paddingSmall * 0.5 }
@@ -135,83 +149,74 @@ Page {
             Item { width: parent.width; height: Theme.paddingSmall }
 
             SectionHeader {
-                text: qsTr("Custom breathing patterns")
-                visible: page.customPatterns.length > 0
+                text: qsTr("Breathing patterns")
             }
 
             Repeater {
-                model: page.customPatterns.length
-                visible: page.customPatterns.length > 0
+                model: page.patterns
+
                 ListItem {
-                    id: customItem
+                    id: patternItem
                     width: column.width
                     contentHeight: Theme.itemSizeMedium
-                    menu: Component {
+                    menu: page.isCustom(modelData) ? customMenuC : presetMenuC
+
+                    Component {
+                        id: customMenuC
                         ContextMenu {
                             MenuItem {
                                 text: qsTr("Edit")
                                 onClicked: pageStack.push("PatternEditorPage.qml",
-                                                          { editing: page.customPatterns[index] })
+                                                          { editing: page.patterns[index] })
                             }
                             MenuItem {
                                 text: qsTr("Delete")
-                                onClicked: {
-                                    var idx = index
-                                    var p = page
-                                    var s = Settings
-                                    customItem.remorseDelete(function() {
-                                        var list = p.customPatterns
-                                        list.splice(idx, 1)
-                                        s.setValue("customPatterns", JSON.stringify(list))
-                                        p.reloadPatterns()
-                                    })
-                                }
+                                onClicked: page.deleteCustomPattern(page.patterns[index].id)
                             }
                         }
                     }
-                    TextSwitch {
-                        width: parent.width
-                        automaticCheck: false
-                        checked: page.selectedId === page.customPatterns[index].id
-                        text: page.customPatterns[index].name + " (" + page.customPatterns[index].tag + ")"
-                        description: page.customPatterns[index].description
-                                     ? page.customPatterns[index].description
-                                     : page.customPatterns[index].benefit
-                        onClicked: page.selectPattern(page.customPatterns[index].id)
-                        onPressAndHold: customItem.showMenu()
-                    }
-                }
-            }
-
-            SectionHeader {
-                text: qsTr("Breathing patterns")
-                visible: page.hasVisiblePresets
-            }
-
-            Repeater {
-                model: PatternsDB.patterns
-
-                ListItem {
-                    id: presetItem
-                    width: column.width
-                    visible: page.patternVisible(modelData.id)
-                    contentHeight: Theme.itemSizeMedium
-                    menu: Component {
+                    Component {
+                        id: presetMenuC
                         ContextMenu {
                             MenuItem {
                                 text: qsTr("Hide")
-                                onClicked: page.hidePattern(modelData.id)
+                                onClicked: page.hidePattern(page.patterns[index].id)
                             }
                         }
                     }
-                    TextSwitch {
+
+                    Loader {
                         width: parent.width
-                        automaticCheck: false
-                        checked: page.selectedId === modelData.id
-                        text: Tr.trName(modelData.id) + " (" + modelData.tag + ")"
-                        description: Tr.trBenefit(modelData.id)
-                        onClicked: page.selectPattern(modelData.id)
-                        onPressAndHold: presetItem.showMenu()
+                        height: Theme.itemSizeMedium
+                        sourceComponent: page.isCustom(modelData) ? customSwitchC : presetSwitchC
+                    }
+
+                    Component {
+                        id: customSwitchC
+                        IconTextSwitch {
+                            width: parent.width
+                            automaticCheck: false
+                            checked: page.selectedId === page.patterns[index].id
+                            icon.source: "image://theme/icon-m-media-artists"
+                            text: page.patterns[index].name + " (" + page.patterns[index].tag + ")"
+                            description: page.patterns[index].description
+                                         ? page.patterns[index].description
+                                         : page.patterns[index].benefit
+                            onClicked: page.selectPattern(page.patterns[index].id)
+                            onPressAndHold: patternItem.openMenu()
+                        }
+                    }
+                    Component {
+                        id: presetSwitchC
+                        TextSwitch {
+                            width: parent.width
+                            automaticCheck: false
+                            checked: page.selectedId === page.patterns[index].id
+                            text: Tr.trName(page.patterns[index].id) + " (" + page.patterns[index].tag + ")"
+                            description: Tr.trBenefit(page.patterns[index].id)
+                            onClicked: page.selectPattern(page.patterns[index].id)
+                            onPressAndHold: patternItem.openMenu()
+                        }
                     }
                 }
             }

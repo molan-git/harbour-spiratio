@@ -130,10 +130,6 @@
         <translation>Atemmuster</translation>
     </message>
     <message>
-        <source>Custom breathing patterns</source>
-        <translation>Eigene Atemmuster</translation>
-    </message>
-    <message>
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
@@ -146,12 +142,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add breathing pattern</source>
+        <source>1 min</source>
+        <translation type="unfinished">30 Min. {1 ?}</translation>
+    </message>
+    <message>
+        <source>Add custom breathing pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>1 min</source>
-        <translation type="unfinished">30 Min. {1 ?}</translation>
+        <source>Ends automatically after %1 minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Runs until you stop it</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
