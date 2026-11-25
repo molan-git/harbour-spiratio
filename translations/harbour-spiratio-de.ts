@@ -149,6 +149,10 @@
         <source>Add breathing pattern</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>1 min</source>
+        <translation type="unfinished">30 Min. {1 ?}</translation>
+    </message>
 </context>
 <context>
     <name>PatternEditorPage</name>

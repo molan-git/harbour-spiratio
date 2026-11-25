@@ -12,8 +12,8 @@ Page {
     property int revision: 0
     property bool hasVisiblePresets: false
     property int durationMinutes: 10
-    property var durations: [3, 5, 10, 15, 20, 30, 0]
-    property var durationLabels: [qsTr("3 min"), qsTr("5 min"), qsTr("10 min"), qsTr("15 min"), qsTr("20 min"), qsTr("30 min"), qsTr("Endless")]
+    property var durations: [1, 3, 5, 10, 15, 20, 30, 0]
+    property var durationLabels: [qsTr("1 min"), qsTr("3 min"), qsTr("5 min"), qsTr("10 min"), qsTr("15 min"), qsTr("20 min"), qsTr("30 min"), qsTr("Endless")]
 
     onStatusChanged: {
         if (status === PageStatus.Active)
@@ -118,7 +118,7 @@ Page {
                 }
             }
 
-            Item { width: parent.width; height: Theme.paddingSmall }
+            Item { width: parent.width; height: Theme.paddingSmall * 0.5 }
 
             IconButton {
                 anchors.horizontalCenter: parent.horizontalCenter
