@@ -8,42 +8,42 @@
 var patterns = [
     /* ── Stimulating ── */
 
-    { id: "awake", name: "Awake", tag: "6-0-2-0", benefit: "Energizing",
+    { id: "morning", name: "Morning Breathing", tag: "6-0-2-0", benefit: "Morning activation",
       phases: [ {t:"in", s:6}, {t:"out", s:2} ] },
 
     /* ── Acute / Focus ── */
 
-    { id: "sigh", name: "Physiological Sigh", tag: "2+1-6-0", benefit: "Stress relief",
-      phases: [ {t:"in", s:2}, {t:"in", s:1}, {t:"out", s:6} ] },
-
-    { id: "box", name: "Box Breathing", tag: "4-4-4-4", benefit: "Focus, calm, stress control",
+    { id: "box", name: "Box Breathing", tag: "4-4-4-4", benefit: "Focus under pressure",
       phases: [ {t:"in", s:4}, {t:"hold", s:4}, {t:"out", s:4}, {t:"hold", s:4} ] },
+
+    { id: "sigh", name: "Physiological Sigh", tag: "2-0-6-0", benefit: "Instant stress relief",
+      phases: [ {t:"in", s:2}, {t:"out", s:6} ] },
+
+    { id: "quickcalm", name: "Quick Calm", tag: "3-3-3-0", benefit: "Acute calming",
+      phases: [ {t:"in", s:3}, {t:"hold", s:3}, {t:"out", s:3} ] },
 
     /* ── Balance / Steady ── */
 
-    { id: "resonance", name: "Resonance Breathing", tag: "5-0-5-0", benefit: "HRV optimisation, daily calm",
+    { id: "coherent", name: "Coherent Breathing", tag: "5-0-5-0", benefit: "HRV, daily balance",
       phases: [ {t:"in", s:5}, {t:"out", s:5} ] },
 
-    { id: "samavritti", name: "Sama Vritti", tag: "4-0-4-0", benefit: "Steady baseline, pranayama",
+    { id: "triangle", name: "Triangle Breathing", tag: "4-0-4-0", benefit: "Simple grounding",
       phases: [ {t:"in", s:4}, {t:"out", s:4} ] },
 
-    { id: "ujjayi", name: "Ujjayi", tag: "7-0-7-0", benefit: "Vagal tone, baroreflex",
+    { id: "samavritti", name: "Sama Vritti", tag: "7-0-7-0", benefit: "Relaxation, slow heart rate",
       phases: [ {t:"in", s:7}, {t:"out", s:7} ] },
 
     /* ── Calm / Deep ── */
 
-    { id: "478", name: "Deep Calm", tag: "4-7-8-0", benefit: "Sleep, wind-down",
+    { id: "weil", name: "Weil Hybrid", tag: "4-7-8-0", benefit: "Sleep, deep calm",
       phases: [ {t:"in", s:4}, {t:"hold", s:7}, {t:"out", s:8} ] },
 
-    { id: "pranayama", name: "Pranayama", tag: "7-4-8-4", benefit: "HRV, cardiorespiratory",
-      phases: [ {t:"in", s:7}, {t:"hold", s:4}, {t:"out", s:8}, {t:"hold", s:4} ] },
+    { id: "extendedexhale", name: "Extended Exhale", tag: "4-0-8-0", benefit: "Quick calming",
+      phases: [ {t:"in", s:4}, {t:"out", s:8} ] },
 
-    /* ── Clinical ── */
-
-    { id: "pursed", name: "Pursed-Lip Breathing", tag: "2-0-4-0", benefit: "Breathlessness, COPD",
-      phases: [ {t:"in", s:2}, {t:"out", s:4} ] }
+    { id: "bhramari", name: "Bhramari", tag: "4-0-8-0", benefit: "Vagal tone, lower pulse",
+      phases: [ {t:"in", s:4}, {t:"out", s:8} ] },
 ];
-
 function tagFromPhases(phases) {
     var parts = []
     for (var i = 0; i < phases.length; i++) parts.push(phases[i].s)

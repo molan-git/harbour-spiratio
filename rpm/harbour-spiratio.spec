@@ -1,7 +1,7 @@
 Name:       harbour-spiratio
 
 Summary:    Spiratio
-Version:    0.4.0
+Version:    0.5.0
 Release:    1
 License:    LICENSE
 URL:        http://example.org/
