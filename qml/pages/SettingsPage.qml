@@ -5,7 +5,7 @@ Page {
     id: page
 
     // sound file names shown in the combos, index matches the menu items
-    property var soundNames: ["gong1", "gong2", "gong3","voiceIn", "voiceOut", "voiceHold"]
+    property var soundNames: ["gong1", "gong2", "gong3", "voiceIn", "voiceOut", "voiceHold"]
 
     SilicaFlickable {
         anchors.fill: parent
@@ -17,7 +17,7 @@ Page {
 
             PageHeader { title: qsTr("Settings") }
 
-            // SectionHeader { text: "Sounds" }
+            SectionHeader { text: "Sounds" }
 
             TextSwitch {
                 width: parent.width
@@ -106,6 +106,17 @@ Page {
                 onValueChanged: {
                     Settings.setValue("volume", "" + Math.round(value))
                 }
+            }
+
+            Item { width: parent.width; height: Theme.paddingMedium }
+
+            SectionHeader { text: qsTr("Display") }
+
+            TextSwitch {
+                width: parent.width
+                text: qsTr("Keep display on during session")
+                onCheckedChanged: Settings.setValue("keepDisplayOn", checked ? "true" : "false")
+                Component.onCompleted: checked = Settings.value("keepDisplayOn", "false") === "true"
             }
         }
     }

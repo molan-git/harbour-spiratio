@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 import QtMultimedia 5.0
+import Nemo.KeepAlive 1.2
 import "../js/translations.js" as Tr
 import "../components"
 
@@ -21,6 +22,8 @@ Page {
     // volume is read once here; it cannot change while a session runs,
     // because the Settings page is not reachable from a running session
     readonly property real cueVolume: Settings.value("volume", "50") / 100
+    // keep-display-on is read once here; it cannot change while a session runs
+    readonly property bool keepScreenOn: Settings.value("keepDisplayOn", "false") === "true"
     property bool running: false
     property bool finished: false
     readonly property bool isSession: true
@@ -46,6 +49,17 @@ Page {
             t += phases[i].s
         }
         cycleTime = t
+    }
+
+    // prevent system suspend while a session runs, so cues and timer
+    // keep working with a blanked display
+    KeepAlive {
+        enabled: page.running && !page.finished
+    }
+
+    // optionally keep the display on (user setting)
+    DisplayBlanking {
+        preventBlanking: page.keepScreenOn && page.running && !page.finished
     }
 
     Timer {
@@ -247,6 +261,7 @@ Page {
                 onClicked: {
                     if (page.finished) {
                         pageStack.pop()
+
                     } else if (page.running) {
                         page.running = false
                     } else {

@@ -12,10 +12,6 @@
         <translation>Version</translation>
     </message>
     <message>
-        <source>A breathing companion which includes well-proven techniques, from quick stress relief to deep relaxation, with a live breath graph and optional audio cues.</source>
-        <translation>Ein Atembegleiter mit bewährten Techniken – von schneller Stressreduktion bis zur tiefen Entspannung – mit Live-Atemgraph und optionalen Klangsignalen.</translation>
-    </message>
-    <message>
         <source>Development</source>
         <translation>Entwicklung</translation>
     </message>
@@ -46,6 +42,10 @@
     <message>
         <source>Support</source>
         <translation>Unterstützung</translation>
+    </message>
+    <message>
+        <source>A breathing companion which includes well-proven techniques, from quick stress relief to deep relaxation. Includes breath graph and optional audio cues.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -290,13 +290,22 @@
         <source>Play sounds</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Display</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep the display on while a session runs</source>
+        <extracomment>Subtitle for the &quot;keep display on&quot; switch</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Keep display on during session</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>translations</name>
-    <message>
-        <source>Awake</source>
-        <translation>Wach</translation>
-    </message>
     <message>
         <source>Physiological Sigh</source>
         <translation>Physiologisches Seufzen</translation>
@@ -306,67 +315,79 @@
         <translation>Box-Atmung</translation>
     </message>
     <message>
-        <source>Resonance Breathing</source>
-        <translation>Resonanzatmung</translation>
-    </message>
-    <message>
         <source>Sama Vritti</source>
         <translation>Sama Vritti</translation>
-    </message>
-    <message>
-        <source>Ujjayi</source>
-        <translation>Ujjayi</translation>
-    </message>
-    <message>
-        <source>Deep Calm</source>
-        <translation>Tiefe Ruhe</translation>
-    </message>
-    <message>
-        <source>Pranayama</source>
-        <translation>Pranayama</translation>
-    </message>
-    <message>
-        <source>Pursed-Lip Breathing</source>
-        <translation>Lippenbremse Atmung</translation>
-    </message>
-    <message>
-        <source>Steady baseline, pranayama</source>
-        <translation>Stabile Basis, Pranayama</translation>
-    </message>
-    <message>
-        <source>Vagal tone, baroreflex</source>
-        <translation>Vagustonus, Baroreflex</translation>
-    </message>
-    <message>
-        <source>HRV, cardiorespiratory</source>
-        <translation>HRV, kardiorespiratorisch</translation>
-    </message>
-    <message>
-        <source>Breathlessness, COPD</source>
-        <translation>Atemnot, COPD</translation>
     </message>
     <message>
         <source>Custom</source>
         <translation>Eigene</translation>
     </message>
     <message>
-        <source>Energizing</source>
+        <source>Morning Breathing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stress relief</source>
+        <source>Quick Calm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Focus, calm, stress control</source>
+        <source>Coherent Breathing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HRV optimisation, daily calm</source>
+        <source>Triangle Breathing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sleep, wind-down</source>
+        <source>Weil Hybrid</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extended Exhale</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bhramari</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Morning activation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Focus under pressure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Instant stress relief</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Acute calming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HRV, daily balance</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple grounding</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Relaxation, slow heart rate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sleep, deep calm</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quick calming</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vagal tone, lower pulse</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

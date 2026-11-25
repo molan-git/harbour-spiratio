@@ -54,7 +54,7 @@ Page {
                 width: parent.width - 2 * Theme.horizontalPageMargin
                 x: Theme.horizontalPageMargin
 
-                text: qsTr("A breathing companion which includes well-proven techniques, from quick stress relief to deep relaxation, with a live breath graph and optional audio cues.")
+                text: qsTr("A breathing companion which includes well-proven techniques, from quick stress relief to deep relaxation. Includes breath graph and optional audio cues.")
 
                 color: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeMedium
