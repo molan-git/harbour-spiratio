@@ -13,8 +13,8 @@ Name=Spiratio
 
 [X-Sailjail]
 # Replace with your organization as a reverse domain name
-OrganizationName=org.molan-git
+OrganizationName=ch.molan-git
 # ApplicationName does not have to be identical to Name
-ApplicationName=spiratio
+ApplicationName=harbour-spiratio
 # Add the required permissions here
 Permissions=Audio

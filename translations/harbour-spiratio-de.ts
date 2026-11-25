@@ -114,10 +114,6 @@
         <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Add custom breathing pattern</source>
-        <translation>Eigene Atemmuster hinzufügen</translation>
-    </message>
-    <message>
         <source>Spiratio</source>
         <translation>Spiratio</translation>
     </message>
@@ -128,14 +124,6 @@
     <message>
         <source>Session length</source>
         <translation>Sitzungsdauer</translation>
-    </message>
-    <message>
-        <source>Runs until you stop it</source>
-        <translation>Läuft, bis du es beendest</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Start</translation>
     </message>
     <message>
         <source>Breathing patterns</source>
@@ -154,31 +142,19 @@
         <translation>Löschen</translation>
     </message>
     <message>
-        <source>Ends automatically after %1 minutes</source>
-        <translation>Endet automatisch nach %1 Minuten</translation>
+        <source>Hide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add breathing pattern</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PatternEditorPage</name>
     <message>
-        <source>Please give the pattern a name</source>
-        <translation>Bitte gib dem Muster einen Namen</translation>
-    </message>
-    <message>
-        <source>Inhale and exhale must be at least 1 second</source>
-        <translation>Einatmen und Ausatmen müssen mindestens 1 Sekunde betragen</translation>
-    </message>
-    <message>
         <source>Custom</source>
         <translation>Eigene</translation>
-    </message>
-    <message>
-        <source>Edit pattern</source>
-        <translation>Muster bearbeiten</translation>
-    </message>
-    <message>
-        <source>New pattern</source>
-        <translation>Neues Muster</translation>
     </message>
     <message>
         <source>Name</source>
@@ -205,16 +181,20 @@
         <translation>Halten nach Ausatmen (s)</translation>
     </message>
     <message>
-        <source>Set a hold to 0 to skip it. Example: in 4, hold 3, out 5, hold 3.</source>
-        <translation>Haltephase auf 0 setzen, um sie zu überspringen. Beispiel: ein 4, halten 3, aus 5, halten 3.</translation>
+        <source>Description (optional)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save changes</source>
-        <translation>Änderungen speichern</translation>
+        <source>e.g. Slow breathing to fall asleep</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save pattern</source>
-        <translation>Muster speichern</translation>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set a hold to 0 to skip it.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -248,20 +228,8 @@
         <translation>Spiratio</translation>
     </message>
     <message>
-        <source>Done</source>
-        <translation>Fertig</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <translation>Pause</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation>Fortsetzen</translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation>Start</translation>
+        <source>Custom</source>
+        <translation type="unfinished">Eigene</translation>
     </message>
 </context>
 <context>
@@ -295,12 +263,19 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep the display on while a session runs</source>
-        <extracomment>Subtitle for the &quot;keep display on&quot; switch</extracomment>
+        <source>Keep display on during session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep display on during session</source>
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Restore hidden breathing patterns</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Breathing patterns restored</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

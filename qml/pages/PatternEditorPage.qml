@@ -2,15 +2,15 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 import "../js/patterns.js" as PatternsDB
 
-Page {
+Dialog {
     id: page
 
     property var editing: null
-    property string attentionText: ""
 
     onStatusChanged: {
         if (status === PageStatus.Active && editing) {
             nameField.text = editing.name
+            descriptionField.text = editing.description ? editing.description : ""
             var p = editing.phases
             inField.text = phaseLen(p, "in", 0)
             holdInField.text = phaseLen(p, "hold", 0)
@@ -18,6 +18,10 @@ Page {
             holdOutField.text = phaseLen(p, "hold", 1)
         }
     }
+    // Accept is only possible with a name and valid in/out durations
+    canAccept: nameField.text.trim().length > 0
+               && (parseInt(inField.text) || 0) > 0
+               && (parseInt(outField.text) || 0) > 0
 
     function phaseLen(phases, type, occurrence) {
         var seen = -1
@@ -40,16 +44,12 @@ Page {
     }
 
     function save() {
-        attentionText = ""
-
         var inS = parseInt(inField.text) || 0
         var hInS = parseInt(holdInField.text) || 0
         var outS = parseInt(outField.text) || 0
         var hOutS = parseInt(holdOutField.text) || 0
         var nm = nameField.text.trim()
-
-        if (nm.length === 0) { attentionText = qsTr("Please give the pattern a name"); return }
-        if (inS <= 0 || outS <= 0) { attentionText = qsTr("Inhale and exhale must be at least 1 second"); return }
+        var desc = descriptionField.text.trim()
 
         var phases = buildPhases(inS, hInS, outS, hOutS)
 
@@ -62,7 +62,10 @@ Page {
 
         var pattern = {
             id: editing ? editing.id : ("custom-" + Date.now()),
+
             name: nm,
+            // optional description
+            description: desc,
             tag: PatternsDB.tagFromPhases(phases),
             benefit: qsTr("Custom"),
             phases: phases
@@ -78,7 +81,11 @@ Page {
 
         Settings.setValue("customPatterns", JSON.stringify(list))
         Settings.setValue("lastPattern", pattern.id)
-        pageStack.pop()
+    }
+
+    onDone: {
+        if (result == DialogResult.Accepted)
+            page.save()
     }
 
     SilicaFlickable {
@@ -90,8 +97,8 @@ Page {
             width: parent.width
             spacing: Theme.paddingMedium
 
-            PageHeader {
-                title: editing ? qsTr("Edit pattern") : qsTr("New pattern")
+            DialogHeader {
+                acceptText: qsTr("Save")
             }
 
             TextField {
@@ -101,7 +108,14 @@ Page {
                 placeholderText: qsTr("e.g. Evening calm")
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                onTextChanged: page.attentionText = ""
+            }
+
+            TextField {
+                id: descriptionField
+                width: parent.width
+                label: qsTr("Description (optional)")
+                placeholderText: qsTr("e.g. Slow breathing to fall asleep")
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
             }
 
             Grid {
@@ -115,7 +129,6 @@ Page {
                     label: qsTr("Breath in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: "4"
-                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
                     id: holdInField
@@ -123,7 +136,6 @@ Page {
                     label: qsTr("Hold after in (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: "0"
-                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
                     id: outField
@@ -131,7 +143,6 @@ Page {
                     label: qsTr("Breath out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: "4"
-                    onTextChanged: page.attentionText = ""
                 }
                 TextField {
                     id: holdOutField
@@ -139,33 +150,15 @@ Page {
                     label: qsTr("Hold after out (s)")
                     inputMethodHints: Qt.ImhDigitsOnly
                     text: "0"
-                    onTextChanged: page.attentionText = ""
                 }
             }
 
             Label {
                 x: Theme.horizontalPageMargin
                 width: parent.width - 2 * Theme.horizontalPageMargin
-                text: qsTr("Set a hold to 0 to skip it. Example: in 4, hold 3, out 5, hold 3.")
+                text: qsTr("Set a hold to 0 to skip it.")
                 color: Theme.secondaryColor
                 font.pixelSize: Theme.fontSizeExtraSmall
-                wrapMode: Text.WordWrap
-            }
-
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: editing ? qsTr("Save changes") : qsTr("Save pattern")
-                preferredWidth: Theme.buttonWidthLarge
-                onClicked: page.save()
-            }
-
-            Label {
-                x: Theme.horizontalPageMargin
-                width: parent.width - 2 * Theme.horizontalPageMargin
-                visible: page.attentionText.length > 0
-                text: page.attentionText
-                color: Theme.errorColor
-                font.pixelSize: Theme.fontSizeSmall
                 wrapMode: Text.WordWrap
             }
         }

@@ -1,11 +1,36 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import Nemo.Notifications 1.0
+import "../js/patterns.js" as PatternsDB
 
 Page {
     id: page
 
     // sound file names shown in the combos, index matches the menu items
     property var soundNames: ["gong1", "gong2", "gong3", "voiceIn", "voiceOut", "voiceHold"]
+    property int hiddenCount: 0
+
+    onStatusChanged: {
+        if (status === PageStatus.Active)
+            updateHiddenCount()
+    }
+
+    function updateHiddenCount() {
+        var n = 0
+        for (var i = 0; i < PatternsDB.patterns.length; i++) {
+            if (Settings.value("hidden_" + PatternsDB.patterns[i].id, "false") === "true")
+                n++
+        }
+        hiddenCount = n
+    }
+
+    // In-app notification for restored breathing patterns
+    Notification {
+        id: restoredNotification
+        previewSummary: qsTr("Breathing patterns restored")
+        isTransient: true
+        onClicked: close()
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -117,6 +142,22 @@ Page {
                 text: qsTr("Keep display on during session")
                 onCheckedChanged: Settings.setValue("keepDisplayOn", checked ? "true" : "false")
                 Component.onCompleted: checked = Settings.value("keepDisplayOn", "false") === "true"
+            }
+
+            SectionHeader { text: qsTr("Other") }
+
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                preferredWidth: Theme.buttonWidthLarge
+                text: qsTr("Restore hidden breathing patterns")
+                enabled: page.hiddenCount > 0
+                onClicked: {
+                    for (var i = 0; i < PatternsDB.patterns.length; i++)
+                        Settings.setValue("hidden_" + PatternsDB.patterns[i].id, "false")
+                    page.updateHiddenCount()
+                    restoredNotification.close()
+                    restoredNotification.publish()
+                }
             }
         }
     }

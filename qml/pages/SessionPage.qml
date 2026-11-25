@@ -19,14 +19,34 @@ Page {
     property real sessionElapsed: 0
     property real timeInCycle: 0
     property real lastTick: 0
-    // volume is read once here; it cannot change while a session runs,
-    // because the Settings page is not reachable from a running session
+    // volume is read once here; it cannot change while a session runs
     readonly property real cueVolume: Settings.value("volume", "50") / 100
     // keep-display-on is read once here; it cannot change while a session runs
     readonly property bool keepScreenOn: Settings.value("keepDisplayOn", "false") === "true"
     property bool running: false
     property bool finished: false
     readonly property bool isSession: true
+
+    readonly property string sessionTitle: {
+        if (!pattern)
+            return qsTr("Spiratio")
+        var n = Tr.trName(pattern.id)
+        return n.length > 0 ? n : pattern.name
+    }
+
+    readonly property string sessionSubtitle: {
+        if (!pattern)
+            return ""
+        var known = Tr.trName(pattern.id).length > 0
+        var b
+        if (known)
+            b = Tr.trBenefit(pattern.id)
+        else if (pattern.description && pattern.description.length > 0)
+            b = pattern.description
+        else
+            b = pattern.benefit ? pattern.benefit : qsTr("Custom")
+        return "(" + pattern.tag + ") – " + b
+    }
 
     onStatusChanged: {
         if (status === PageStatus.Active && !finished && sessionElapsed === 0) {
@@ -201,8 +221,8 @@ Page {
         PageHeader {
             id: header
             width: parent.width
-            title: pattern ? Tr.trName(pattern.id) : qsTr("Spiratio")
-            description: pattern ? "(" + pattern.tag + ") – " + Tr.trBenefit(pattern.id) : ""
+            title: page.sessionTitle
+            description: page.sessionSubtitle
         }
 
         // Bottom: labels + buttons
@@ -253,16 +273,14 @@ Page {
                 height: Theme.paddingLarge
             }
 
-            Button {
-                width: parent.width - 2 * Theme.horizontalPageMargin
+            IconButton {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: page.finished ? qsTr("Done")
-                                    : (page.running ? qsTr("Pause") : (page.sessionElapsed > 0 ? qsTr("Resume") : qsTr("Start")))
+                icon.source: page.running
+                             ? "image://theme/icon-l-pause"
+                             : "image://theme/icon-l-play"
+                visible: !page.finished
                 onClicked: {
-                    if (page.finished) {
-                        pageStack.pop()
-
-                    } else if (page.running) {
+                    if (page.running) {
                         page.running = false
                     } else {
                         page.lastTick = 0
@@ -272,6 +290,8 @@ Page {
                     }
                 }
             }
+
+            Item { width: parent.width; height: Theme.paddingMedium }
         }
 
         // BreathGraph fills remaining space
